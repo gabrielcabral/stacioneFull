@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/public/js/entrada.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/public/js/funcionario.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/public/js/preco.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/public/js/principal.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/public/js/vagas.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/public/js/veiculo.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/view/efetuarPagamento.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/view/precos.php" charset="UTF-8" />
+  </component>
+</project>

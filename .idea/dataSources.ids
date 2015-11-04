@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - dbstacione@localhost" uuid="d6641cbe-ce1b-4b31-9677-29069edaccfc">
+    <database-info product="MySQL" version="5.6.26-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="dbstacione"/>
+    <table name="tb_entrada_saida" schema="" catalog="dbstacione" type="TABLE">
+      <column name="ID_ENTRADA_SAIDA" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="PLACA" sqlType="VARCHAR" precision="9" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ENTRADA" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="SAIDA" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="ID_FUNCIONARIO" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="ID_VEICULO" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="ID_ENTRADA_SAIDA,ID_VEICULO"/>
+      <foreign-key name="fk_TB_ENTRADA_SAIDA_TB_FUNCIONARIO1" columns="ID_FUNCIONARIO" ref-table="tb_funcionario" ref-schema="" ref-catalog="dbstacione" ref-columns="ID_FUNCIONARIO" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_TB_ENTRADA_SAIDA_TB_VEICULO1" columns="ID_VEICULO" ref-table="tb_veiculo" ref-schema="" ref-catalog="dbstacione" ref-columns="id_veiculo" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_TB_ENTRADA_SAIDA_TB_FUNCIONARIO1_idx" unique="false" columns="ID_FUNCIONARIO"/>
+      <index name="fk_TB_ENTRADA_SAIDA_TB_VEICULO1_idx" unique="false" columns="ID_VEICULO"/>
+    </table>
+    <table name="tb_fabricante" schema="" catalog="dbstacione" type="TABLE">
+      <column name="ID_fabricante" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="nome_fabricante" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID_fabricante"/>
+      <exported-key name="fk_TB_VEICULO_tb_fabricante1" table="tb_veiculo" schema="" catalog="dbstacione" columns="id_fabricante"/>
+    </table>
+    <table name="tb_funcionario" schema="" catalog="dbstacione" type="TABLE">
+      <column name="ID_FUNCIONARIO" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="ID_PERFIL" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="NM_FUNCIONARIO" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CPF_FUNCIONARIO" sqlType="VARCHAR" precision="14" scale="0" nullable="true" jdbcType="12"/>
+      <column name="RG_FUNCIONARIO" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="DT_NASCIMENTO" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="LOGIN" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SENHA" sqlType="VARCHAR" precision="60" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TELEFONE" sqlType="VARCHAR" precision="14" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ATIVO" sqlType="BIT" precision="1" scale="0" nullable="true" jdbcType="-7"/>
+      <primary-key name="PRIMARY" columns="ID_FUNCIONARIO,ID_PERFIL"/>
+      <foreign-key name="fk_TB_FUNCIONARIO_TB_PERFIL" columns="ID_PERFIL" ref-table="tb_perfil" ref-schema="" ref-catalog="dbstacione" ref-columns="ID_PERFIL" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="fk_TB_ENTRADA_SAIDA_TB_FUNCIONARIO1" table="tb_entrada_saida" schema="" catalog="dbstacione" columns="ID_FUNCIONARIO"/>
+      <exported-key name="fk_tb_vaga_TB_FUNCIONARIO1" table="tb_vaga" schema="" catalog="dbstacione" columns="ID_FUNCIONARIO"/>
+      <index name="fk_TB_FUNCIONARIO_TB_PERFIL_idx" unique="false" columns="ID_PERFIL"/>
+    </table>
+    <table name="tb_pagamento" schema="" catalog="dbstacione" type="TABLE">
+      <column name="ID_PAGAMENTO" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="VL_APAGAR" sqlType="FLOAT" precision="12" scale="0" nullable="true" jdbcType="7"/>
+      <column name="VL_PAGO" sqlType="FLOAT" precision="12" scale="0" nullable="true" jdbcType="7"/>
+      <column name="VL_TROCO" sqlType="FLOAT" precision="12" scale="0" nullable="true" jdbcType="7"/>
+      <column name="DT_PAGAMENTO" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="TB_ENTRADA_SAIDA_ID_ENTRADA_SAIDA" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="TB_VEICULO_ID_VEICULO" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="TB_FUNCIONARIO_ID_FUNCIONARIO" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="TB_FUNCIONARIO_ID_PERFIL" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="TB_PRECO_ID_PRECO" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="ID_PAGAMENTO"/>
+      <index name="fk_TB_PAGAMENTO_TB_ENTRADA_SAIDA1_idx" unique="false" columns="TB_ENTRADA_SAIDA_ID_ENTRADA_SAIDA"/>
+      <index name="fk_TB_PAGAMENTO_TB_FUNCIONARIO1_idx" unique="false" columns="TB_FUNCIONARIO_ID_FUNCIONARIO,TB_FUNCIONARIO_ID_PERFIL"/>
+      <index name="fk_TB_PAGAMENTO_TB_PRECO1_idx" unique="false" columns="TB_PRECO_ID_PRECO"/>
+      <index name="fk_TB_PAGAMENTO_TB_VEICULO1_idx" unique="false" columns="TB_VEICULO_ID_VEICULO"/>
+    </table>
+    <table name="tb_perfil" schema="" catalog="dbstacione" type="TABLE">
+      <column name="ID_PERFIL" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="NM_PERFIL" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="DS_PERFIL" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ATIVO" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6"/>
+      <primary-key name="PRIMARY" columns="ID_PERFIL"/>
+      <exported-key name="fk_TB_FUNCIONARIO_TB_PERFIL" table="tb_funcionario" schema="" catalog="dbstacione" columns="ID_PERFIL"/>
+    </table>
+    <table name="tb_preco" schema="" catalog="dbstacione" type="TABLE">
+      <column name="ID_PRECO" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="PRIMEIRA_HORA" sqlType="FLOAT" precision="12" scale="0" nullable="false" jdbcType="7"/>
+      <column name="SEGUNDA_HORA" sqlType="FLOAT" precision="12" scale="0" nullable="true" jdbcType="7"/>
+      <column name="OUTRAS_HORAS" sqlType="FLOAT" precision="12" scale="0" nullable="true" jdbcType="7"/>
+      <column name="PRECO_MINUTO" sqlType="FLOAT" precision="12" scale="0" nullable="true" jdbcType="7"/>
+      <column name="TIPO_COBRANCA" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <primary-key name="PRIMARY" columns="ID_PRECO"/>
+    </table>
+    <table name="tb_vaga" schema="" catalog="dbstacione" type="TABLE">
+      <column name="id_vaga" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="qt_vaga" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="dt_atualizacao" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="ID_FUNCIONARIO" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id_vaga,ID_FUNCIONARIO"/>
+      <foreign-key name="fk_tb_vaga_TB_FUNCIONARIO1" columns="ID_FUNCIONARIO" ref-table="tb_funcionario" ref-schema="" ref-catalog="dbstacione" ref-columns="ID_FUNCIONARIO" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_tb_vaga_TB_FUNCIONARIO1_idx" unique="false" columns="ID_FUNCIONARIO"/>
+    </table>
+    <table name="tb_veiculo" schema="" catalog="dbstacione" type="TABLE">
+      <column name="id_veiculo" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="id_fabricante" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="veiculo" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id_veiculo,id_fabricante"/>
+      <foreign-key name="fk_TB_VEICULO_tb_fabricante1" columns="id_fabricante" ref-table="tb_fabricante" ref-schema="" ref-catalog="dbstacione" ref-columns="ID_fabricante" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="fk_TB_ENTRADA_SAIDA_TB_VEICULO1" table="tb_entrada_saida" schema="" catalog="dbstacione" columns="ID_VEICULO"/>
+      <index name="fk_TB_VEICULO_tb_fabricante1_idx" unique="false" columns="id_fabricante"/>
+      <index name="id_veiculo" unique="false" columns="id_veiculo"/>
+    </table>
+  </data-source>
+</component>
