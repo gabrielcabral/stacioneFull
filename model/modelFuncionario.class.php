@@ -1,10 +1,11 @@
 <?php
 
-#inclui arquivo da classe de conexão
-include_once '../model/modelConexao.class.php';
+// inclui arquivo da classe de conexão
+require_once '../model/modelConexao.class.php';
 
 
-class ModelFuncionario extends ModelConexao {
+class ModelFuncionario extends ModelConexao
+{
 
     /**
      * Atributos da classe
@@ -166,58 +167,60 @@ class ModelFuncionario extends ModelConexao {
     /**
      * método mágico para não permitir clonar a classe
      */
-    public function __clone() {
+    public function __clone() 
+    {
         ;
     }
 
     /**
      * Método utilizado para consultar os funcionarios cadastrados
      * @access public 
-     * @param Int $id id do funcionario
+     * @param Int    $id   id do funcionario
      * @param String $nome nome do funcionario
      * @return Array dados do funcionario
      */
-    public function consultar($arrFuncionario) {
+    public function consultar($arrFuncionario) 
+    {
 
-        #setar os valores
+        // setar os valores
 
         $this->setIdFuncionario($arrFuncionario['id_funcionario']);
         $this->setNmFuncionario($arrFuncionario['nm_funcionario']);
         $this->setCpfFuncionario($arrFuncionario['cpf_funcionario']);
 
-        #montar a consultar (whre 1 serve para selecionar todos os registros)
-        $sql = "select * from tb_funcionario where ATIVO = 1 ";
+        // montar a consultar (whre 1 serve para selecionar todos os registros)
+        $sql = "select * from tb_funcionario where ATIVO = 1  ";
 
-        #verificar se foi passado algum valor de $id_funcionario    
+        // verificar se foi passado algum valor de $id_funcionario    
         if ($this->getIdFuncionario() != null) {
             $sql.= " and id_funcionario=:id_funcionario";
         }
-        #verificar se foi passado algum valor de $id_funcionario
+        // verificar se foi passado algum valor de $id_funcionario
         if ($this->getCpfFuncionario() != null) {
             $sql.= " and cpf_funcionario=:cpf_funcionario";
         }
 
-        #verificar se foi passado algum valor de $nome 
+        // verificar se foi passado algum valor de $nome 
         if ($this->getNmFuncionario() != null) {
             $sql.= " and nm_funcionario LIKE :nome_funcionario ";
         }
 
-        #executa consulta e controi um array com o resultado da consulta
+        // executa consulta e controi um array com o resultado da consulta
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);
 
-            #verificar se foi passado algum valor de $id_funcionario   
+            // verificar se foi passado algum valor de $id_funcionario   
             if ($this->getIdFuncionario() != null) {
                 $query->bindValue(':id_funcionario', $this->getIdFuncionario(), PDO::PARAM_INT);
             }
 
-            #verificar se foi passado algum valor de $id_funcionario
+            // verificar se foi passado algum valor de $id_funcionario
             if ($this->getCpfFuncionario() != null) {
                 $query->bindValue(':cpf_funcionario', $this->getCpfFuncionario(), PDO::PARAM_STR);
 
             }
-            #verificar se foi passado algum valor de $nome 
+            // verificar se foi passado algum valor de $nome 
             if ($this->getNmFuncionario() != null) {
                 $this->setNmFuncionario("%" . $this->getNmFuncionario() . "%");
                 $query->bindValue(':nome_funcionario', $this->getNmFuncionario(), PDO::PARAM_STR);
@@ -237,28 +240,27 @@ class ModelFuncionario extends ModelConexao {
     /**
      * Método utilizado para inserir um funcionario
      * @access public 
-     * @param String $nome nome do funcionario
-     * @param String $cpf CPF do funcionario
-     * @param String $dtNascimento data de nascimento do funcionario
-     * @param String $telefone telefone do funcionario
+     * @param Array de dados
      * @return Boolean retorna TRUE se os dados forem salvos com sucesso
      */
-    function inserirfuncionario($arrFuncionario) {
+    function inserirfuncionario($arrFuncionario) 
+    {
 
-        #setar os valores
-        $this->setIdFuncionario($arrFuncionario['id_funcionario']);
-        $this->setNmFuncionario($arrFuncionario['nome_funcionario']);
+        // setar os valores
+
+        $this->setNmFuncionario($arrFuncionario['nm_funcionario']);
         $this->setCpfFuncionario($arrFuncionario['cpf_funcionario']);
         $this->setRgFuncionario($arrFuncionario['rg_funcionario']);
         $this->setDtNascimento($arrFuncionario['dtNascimento']);
-        $this->setIdPerfil($arrFuncionario['id_perfil']);
+        $this->setIdPerfil($arrFuncionario['perfil']);
         $this->setLogin($arrFuncionario['login']);
-        $this->setSenha($arrFuncionario['senha']);
+        $this->setSenha(sha1($arrFuncionario['senha']));
         $this->setTelefone($arrFuncionario['telefone']);
 
-        #montar a consulta
+        // montar a consulta
         $sql = "INSERT INTO tb_funcionario
                             (
+                            ID_PERFIL,
                             NM_FUNCIONARIO,
                             CPF_FUNCIONARIO,
                             RG_FUNCIONARIO,
@@ -269,6 +271,7 @@ class ModelFuncionario extends ModelConexao {
                             ATIVO)
                             VALUES
                             (
+                            :ID_PERFIL,
                             :NM_FUNCIONARIO ,
                             :CPF_FUNCIONARIO ,
                             :RG_FUNCIONARIO ,
@@ -278,7 +281,7 @@ class ModelFuncionario extends ModelConexao {
                             :TELEFONE,
                              1);";
 
-        #realizar a blidagem dos dados
+        // realizar a blidagem dos dados
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);
@@ -301,16 +304,17 @@ class ModelFuncionario extends ModelConexao {
     /**
      * Método utilizado para alterar um funcionario
      * @access public 
-     * @param Int $id id do funcionario
-     * @param String $nome nome do funcionario
-     * @param String $cpf CPF do funcionario
+     * @param Int    $id           id do funcionario
+     * @param String $nome         nome do funcionario
+     * @param String $cpf          CPF do funcionario
      * @param String $dtNascimento data de nascimento do funcionario
-     * @param String $telefone telefone do funcionario
+     * @param String $telefone     telefone do funcionario
      * @return Boolean retorna TRUE se os dados forem salvos com sucesso
      */
-    public function alterarfuncionario($arrFuncionario) {
+    public function alterarfuncionario($arrFuncionario) 
+    {
 
-        #setar os dados
+        // setar os dados
         $this->setIdFuncionario($arrFuncionario['id_funcionario']);
         $this->setNmFuncionario($arrFuncionario['nome_funcionario']);
         $this->setCpfFuncionario($arrFuncionario['cpf_funcionario']);
@@ -321,7 +325,7 @@ class ModelFuncionario extends ModelConexao {
         $this->setSenha($arrFuncionario['senha']);
         $this->setTelefone($arrFuncionario['telefone']);
 
-        #montar a consulta
+        // montar a consulta
         $sql = "UPDATE tb_funcionario
                 SET
                  ID_PERFIL = : ID_PERFIL,
@@ -335,7 +339,7 @@ class ModelFuncionario extends ModelConexao {
                 WHERE
                     ID_FUNCIONARIO = :ID_FUNCIONARIO";
 
-        #realizar a blidagem dos dados
+        // realizar a blidagem dos dados
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);
@@ -362,19 +366,20 @@ class ModelFuncionario extends ModelConexao {
      * @param Int $id id do funcionario
      * @return Boolean retorna TRUE se os dados for excluído sucesso
      */
-    public function excluirfuncionario($id_funcionario) {
+    public function excluirfuncionario($id_funcionario) 
+    {
 
-        #setar os dados
+        // setar os dados
         $this->setIdFuncionario($id_funcionario);
 
-        #montar a consulta
+        // montar a consulta
         $sql = "UPDATE tb_funcionario
                 SET
                    ATIVO = 0
                 WHERE
                     ID_FUNCIONARIO = :id_funcionario";
 
-        #realizar a blidagem dos dados
+        // realizar a blidagem dos dados
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);

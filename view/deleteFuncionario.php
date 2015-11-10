@@ -8,5 +8,4 @@
 
 include_once('../control/controlFuncionario.class.php');
 $cf = new ControlFuncionario();
-
 $cf->delete($_GET['id']);

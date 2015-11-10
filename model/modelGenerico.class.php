@@ -1,7 +1,7 @@
 <?php
 
-#inclui arquivo da classe de conexão
-include_once '../model/modelConexao.class.php';
+// inclui arquivo da classe de conexão
+require_once '../model/modelConexao.class.php';
 
 /**
  * Criado em <data de cricação>
@@ -9,7 +9,8 @@ include_once '../model/modelConexao.class.php';
  * @author <Nome do Autor> (<e-mail do autor>)
  * @version <versao da classe>
  */
-class Nomedaclasse extends modelConexao {
+class Nomedaclasse extends modelConexao
+{
 
     /**
      * Atributos da classe
@@ -19,11 +20,13 @@ class Nomedaclasse extends modelConexao {
     /**
      * Métodos get e sets das classes
      */
-    public function getNome_atributo() {
+    public function getNome_atributo() 
+    {
         return $this->nome_atributo;
     }
 
-    public function setNome_atributo($nome_atributo) {
+    public function setNome_atributo($nome_atributo) 
+    {
         $this->nome_atributo = $nome_atributo;
     }
 
@@ -33,25 +36,26 @@ class Nomedaclasse extends modelConexao {
      * @param <tipo do parâmero> $<nome parâmetro> <descrição do parâmetro>
      * @return <tipo do retorno> <descrição do reorno>
      */
-    function consultar($parâmetros) {
+    function consultar($parâmetros) 
+    {
 
-        #setar os dados
+        // setar os dados
         $this->setNome_atributo($nome_atributo);
 
-        #montar a consultar (where true serve para selecionar todos os registros)
+        // montar a consultar (where true serve para selecionar todos os registros)
         $sql = "select * from <nome tabela> where true";
 
-        #verificar se foi passado algum valor de <parâmetro>   
+        // verificar se foi passado algum valor de <parâmetro>   
         if ($this->getNome_atributo() != null) {
             $sql.= " and <campo tabela>=:<nome campo>";
         }
 
-        #executa consulta e controi um array com o resultado da consulta
+        // executa consulta e controi um array com o resultado da consulta
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);
 
-            #verificar se foi passado algum valor de :<nome campo> 
+            // verificar se foi passado algum valor de :<nome campo> 
             if ($this->getNome_atributo() != null) {
                 $query->bindValue(':<nome campo>', $this->getNome_atributo(), PDO::PARAM_INT);
             }
@@ -72,16 +76,17 @@ class Nomedaclasse extends modelConexao {
      * @param <tipo do parâmero> $<nome parâmetro> <descrição do parâmetro>
      * @return <tipo do retorno> <descrição do reorno>
      */
-    function inserir($parâmetros) {
+    function inserir($parâmetros) 
+    {
 
-        #setar os dados
+        // setar os dados
         $this->setNome_atributo($nome_atributo);
 
 
-        #montar a consulta
+        // montar a consulta
         $sql = "INSERT INTO <nome tabela> (<campo tabela>) VALUES (:<nome campo>)";
 
-        #realizar a blidagem dos dados
+        // realizar a blidagem dos dados
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);
@@ -99,15 +104,16 @@ class Nomedaclasse extends modelConexao {
      * @param <tipo do parâmero> $<nome parâmetro> <descrição do parâmetro>
      * @return <tipo do retorno> <descrição do reorno>
      */
-    public function alterar($parâmetros) {
+    public function alterar($parâmetros) 
+    {
 
-        #setar os dados
+        // setar os dados
         $this->setNome_atributo($nome_atributo);
 
-        #montar a consulta
+        // montar a consulta
         $sql = "UPDATE <nome tabela> SET <nome campo> = :<nome campos> WHERE <nome chave primária> = :<nome campo>";
 
-        #realizar a blidagem dos dados
+        // realizar a blidagem dos dados
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);
@@ -126,15 +132,16 @@ class Nomedaclasse extends modelConexao {
      * @param <tipo do parâmero> $<nome parâmetro> <descrição do parâmetro>
      * @return <tipo do retorno> <descrição do reorno>
      */
-    public function excluir($parâmetros) {
+    public function excluir($parâmetros) 
+    {
 
-        #setar os dados
+        // setar os dados
         $this->setNome_atributo($nome_atributo);
 
-        #montar a consulta
+        // montar a consulta
         $sql = "DELETE FROM <nome tabela> WHERE <nome chave primária>=:<nome campo>";
 
-        #realizar a blidagem dos dados
+        // realizar a blidagem dos dados
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);

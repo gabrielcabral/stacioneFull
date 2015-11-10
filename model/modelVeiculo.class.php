@@ -1,18 +1,20 @@
 <?php
 
-#inclui arquivo da classe de conexão
-include_once '../model/modelConexao.class.php';
+// inclui arquivo da classe de conexão
+require_once '../model/modelConexao.class.php';
 
 
-class ModelVeiculo extends ModelConexao {
+class ModelVeiculo extends ModelConexao
+{
 
     /**
      * Atributos da classe
      */
     private $id_veiculo;
     private $id_fabricante;
-    private $modelo;
-    private $veiculo;
+    private $nome_veiculo;
+    private $tipo_veiculo;
+
 
     /**
      * @return mixed
@@ -78,62 +80,97 @@ class ModelVeiculo extends ModelConexao {
         $this->veiculo = $veiculo;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getNomeVeiculo()
+    {
+        return $this->nome_veiculo;
+    }
+
+    /**
+     * @param mixed $nome_veiculo
+     */
+    public function setNomeVeiculo($nome_veiculo)
+    {
+        $this->nome_veiculo = $nome_veiculo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTipoVeiculo()
+    {
+        return $this->tipo_veiculo;
+    }
+
+    /**
+     * @param mixed $tipo_veiculo
+     */
+    public function setTipoVeiculo($tipo_veiculo)
+    {
+        $this->tipo_veiculo = $tipo_veiculo;
+    }
+
 
     /**
      * método mágico para não permitir clonar a classe
      */
-    public function __clone() {
+    public function __clone() 
+    {
         ;
     }
 
     /**
      * Método utilizado para consultar os funcionarios cadastrados
      * @access public 
-     * @param Int $id id do funcionario
+     * @param Int    $id   id do funcionario
      * @param String $nome nome do funcionario
      * @return Array dados do funcionario
      */
-    public function consultar($arrVeiculo) {
+    public function consultar($arrVeiculo) 
+    {
 
-        #setar os valores
+        // setar os valores
 
-        $this->setIdVeiculo($arrVeiculo['id_veiculo']);
-        $this->setIdFabricante($arrVeiculo['id_fabricante']);
-        $this->setVeiculo($arrVeiculo['veiculo']);
+        $this->setIdVeiculo($arrVeiculo['modelo']);
+        $this->setIdFabricante($arrVeiculo['nome_fabricante']);
+        $this->setTipoVeiculo($arrVeiculo['tpveiculo']);
 
-        #montar a consultar (whre 1 serve para selecionar todos os registros)
+        // montar a consultar (whre 1 serve para selecionar todos os registros)
         $sql = "select * from tb_veiculo v INNER JOIN tb_fabricante f on f.ID_fabricante = v.id_fabricante WHERE TRUE";
 
-        #verificar se foi passado algum valor de $id_funcionario    
+        // verificar se foi passado algum valor de $id_funcionario    
         if ($this->getIdVeiculo() != null) {
             $sql.= " and v.id_veiculo=:id_veiculo";
         }
-         #verificar se foi passado algum valor de $id_funcionario
+         // verificar se foi passado algum valor de $id_funcionario
         if ($this->getIdFabricante() != null) {
             $sql.= " and v.id_fabricante=:id_fabricante";
         }
-        #verificar se foi passado algum valor de $id_funcionario
-        if ($this->getVeiculo() != null) {
-            $sql.= " and v.veiculo=:veiculo";
+        // verificar se foi passado algum valor de $id_funcionario
+        if ($this->getTipoVeiculo() != null) {
+            $sql.= " and v.tipo_veiculo=:tipoVeiculo";
         }
+        $sql.=" ORDER BY v.nome_veiculo ASC ";
 
-        #executa consulta e controi um array com o resultado da consulta
+        // executa consulta e controi um array com o resultado da consulta
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);
 
 
-            #verificar se foi passado algum valor de $id_funcionario
+            // verificar se foi passado algum valor de $id_funcionario
             if ($this->getIdVeiculo() != null) {
                 $query->bindValue(':id_veiculo', $this->getIdVeiculo(), PDO::PARAM_INT);
             }
-            #verificar se foi passado algum valor de $id_funcionario
+            // verificar se foi passado algum valor de $id_funcionario
             if ($this->getIdFabricante() != null) {
                 $query->bindValue(':id_fabricante', $this->getIdFabricante(), PDO::PARAM_INT);
             }
-            #verificar se foi passado algum valor de $id_funcionario
-            if ($this->getVeiculo() != null) {
-                $query->bindValue(':veiculo', $this->getVeiculo(), PDO::PARAM_STR);
+            // verificar se foi passado algum valor de $id_funcionario
+            if ($this->getTipoVeiculo() != null) {
+                $query->bindValue(':tipoVeiculo', $this->getTipoVeiculo(), PDO::PARAM_STR);
             }
             $query->execute();
             $this->resultado = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -149,27 +186,28 @@ class ModelVeiculo extends ModelConexao {
     /**
      * Método utilizado para consultar os funcionarios cadastrados
      * @access public
-     * @param Int $id id do funcionario
+     * @param Int    $id   id do funcionario
      * @param String $nome nome do funcionario
      * @return Array dados do funcionario
      */
-    public function consultarVeiculo($idfabricante) {
+    public function consultarVeiculo($idfabricante) 
+    {
 
-        #setar os valores
+        // setar os valores
 
 
         $this->setIdFabricante($idfabricante);
 
-        #montar a consultar (whre 1 serve para selecionar todos os registros)
-        $sql = "select DISTINCT veiculo from tb_veiculo where id_fabricante = :id_fabricante ORDER BY veiculo asc";
+        // montar a consultar (whre 1 serve para selecionar todos os registros)
+        $sql = "select DISTINCT veiculo from tb_veiculo where id_fabricante = :id_fabricante ORDER BY veiculo asc limit 10";
 
 
 
-        #executa consulta e controi um array com o resultado da consulta
+        // executa consulta e controi um array com o resultado da consulta
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);
-            #verificar se foi passado algum valor de $id_funcionario
+            // verificar se foi passado algum valor de $id_funcionario
             $query->bindValue(':id_fabricante', $idfabricante, PDO::PARAM_INT);
             $query->execute();
             $this->resultado = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -183,17 +221,18 @@ class ModelVeiculo extends ModelConexao {
     /**
      * Método utilizado para consultar os funcionarios cadastrados
      * @access public
-     * @param Int $id id do funcionario
+     * @param Int    $id   id do funcionario
      * @param String $nome nome do funcionario
      * @return Array dados do funcionario
      */
-    public function consultaFabricante() {
+    public function consultaFabricante() 
+    {
 
 
-        #montar a consultar (whre 1 serve para selecionar todos os registros)
+        // montar a consultar (whre 1 serve para selecionar todos os registros)
         $sql = "select * from tb_fabricante";
 
-        #executa consulta e controi um array com o resultado da consulta
+        // executa consulta e controi um array com o resultado da consulta
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);
@@ -210,15 +249,16 @@ class ModelVeiculo extends ModelConexao {
     /**
      * Método utilizado para inserir um funcionario
      * @access public 
-     * @param String $nome nome do funcionario
-     * @param String $cpf CPF do funcionario
+     * @param String $nome         nome do funcionario
+     * @param String $cpf          CPF do funcionario
      * @param String $dtNascimento data de nascimento do funcionario
-     * @param String $telefone telefone do funcionario
+     * @param String $telefone     telefone do funcionario
      * @return Boolean retorna TRUE se os dados forem salvos com sucesso
      */
-    function inserirfuncionario($arrFuncionario) {
+    function inserirfuncionario($arrFuncionario) 
+    {
 
-        #setar os valores
+        // setar os valores
         $this->setIdFuncionario($arrFuncionario['id_funcionario']);
         $this->setNmFuncionario($arrFuncionario['nome_funcionario']);
         $this->setCpfFuncionario($arrFuncionario['cpf_funcionario']);
@@ -229,7 +269,7 @@ class ModelVeiculo extends ModelConexao {
         $this->setSenha($arrFuncionario['senha']);
         $this->setTelefone($arrFuncionario['telefone']);
 
-        #montar a consulta
+        // montar a consulta
         $sql = "INSERT INTO tb_funcionario
                             (
                             NM_FUNCIONARIO,
@@ -251,7 +291,7 @@ class ModelVeiculo extends ModelConexao {
                             :TELEFONE,
                              1);";
 
-        #realizar a blidagem dos dados
+        // realizar a blidagem dos dados
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);
@@ -274,16 +314,17 @@ class ModelVeiculo extends ModelConexao {
     /**
      * Método utilizado para alterar um funcionario
      * @access public 
-     * @param Int $id id do funcionario
-     * @param String $nome nome do funcionario
-     * @param String $cpf CPF do funcionario
+     * @param Int    $id           id do funcionario
+     * @param String $nome         nome do funcionario
+     * @param String $cpf          CPF do funcionario
      * @param String $dtNascimento data de nascimento do funcionario
-     * @param String $telefone telefone do funcionario
+     * @param String $telefone     telefone do funcionario
      * @return Boolean retorna TRUE se os dados forem salvos com sucesso
      */
-    public function alterarfuncionario($arrFuncionario) {
+    public function alterarfuncionario($arrFuncionario) 
+    {
 
-        #setar os dados
+        // setar os dados
         $this->setIdFuncionario($arrFuncionario['id_funcionario']);
         $this->setNmFuncionario($arrFuncionario['nome_funcionario']);
         $this->setCpfFuncionario($arrFuncionario['cpf_funcionario']);
@@ -294,7 +335,7 @@ class ModelVeiculo extends ModelConexao {
         $this->setSenha($arrFuncionario['senha']);
         $this->setTelefone($arrFuncionario['telefone']);
 
-        #montar a consulta
+        // montar a consulta
         $sql = "UPDATE tb_funcionario
                 SET
                  ID_PERFIL = : ID_PERFIL,
@@ -308,7 +349,7 @@ class ModelVeiculo extends ModelConexao {
                 WHERE
                     ID_FUNCIONARIO = :ID_FUNCIONARIO";
 
-        #realizar a blidagem dos dados
+        // realizar a blidagem dos dados
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);
@@ -335,17 +376,18 @@ class ModelVeiculo extends ModelConexao {
      * @param Int $id id do funcionario
      * @return Boolean retorna TRUE se os dados for excluído sucesso
      */
-    public function excluir($id_veiculo) {
+    public function excluir($id_veiculo) 
+    {
 
-        #setar os dados
+        // setar os dados
         $this->setIdVeiculo($id_veiculo);
 
-        #montar a consulta
+        // montar a consulta
         $sql = "delete from tb_veiculo
                 WHERE
                     id_veiculo = :id_veiculo";
 
-        #realizar a blidagem dos dados
+        // realizar a blidagem dos dados
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);

@@ -1,14 +1,14 @@
 ﻿<?php
-#iniciar_sessao
+// iniciar_sessao
 session_start();
 
-#carregar as classes dinamicamente
-include_once 'autoload.php';
+// carregar as classes dinamicamente
+require_once 'autoload.php';
 
-#função para resolver problema de header
+// função para resolver problema de header
 ob_start();
 
-#define codificação
+// define codificação
 header('Content-Type: text/html; charset=UTF-8');
 
 /**
@@ -17,16 +17,18 @@ header('Content-Type: text/html; charset=UTF-8');
  * @author Sérgio Lima (professor.sergiolima@gmail.com)
  * @version 1.0.0
  */
-class ControlCliente extends ControlGeral {
+class ControlCliente extends ControlGeral
+{
 
     /**
      * Método utilizado para validar os dados dos clientes cadastrados e invocar o método consultarCliente no model
      * @access public 
-     * @param Int $id id do cliente
+     * @param Int    $id   id do cliente
      * @param String $nome nome do cliente
      * @return Array dados do cliente
      */
-    function consultar($id, $nome) {
+    function consultar($id, $nome) 
+    {
 
         $objCliente = new ModelCliente();
         return $listaCliente = $objCliente->consultarCliente($id, $nome);
@@ -35,29 +37,30 @@ class ControlCliente extends ControlGeral {
     /**
      * Método utilizado validar os dados dos clientes cadastrados e invocar o método inserirCliente no model
      * @access public 
-     * @param String $nome nome do cliente
-     * @param String $cpf CPF do cliente
+     * @param String $nome         nome do cliente
+     * @param String $cpf          CPF do cliente
      * @param String $dtNascimento data de nascimento do cliente
-     * @param String $telefone telefone do cliente
+     * @param String $telefone     telefone do cliente
      * @return Boolean retorna TRUE se os dados forem salvos com sucesso
      */
-    function inserir($nome, $cpf, $dtNascimento, $telefone) {
+    function inserir($nome, $cpf, $dtNascimento, $telefone) 
+    {
 
-        #invocar métódo  e passar parâmetros
+        // invocar métódo  e passar parâmetros
         $objCliente = new ModelCliente();
 
-        #tratar a data de nascimento
+        // tratar a data de nascimento
         $dtNascimento = $this->dataAmericano($dtNascimento);
 
-        #se for válido invocar o método de iserir
+        // se for válido invocar o método de iserir
         if ($objCliente->inserirCliente($nome, $cpf, $dtNascimento, $telefone) == true) {
-            #se for inserido com sucesso mostrar a mensagem
+            // se for inserido com sucesso mostrar a mensagem
             $_SESSION['msg'] = "Inserido com sucesso!";
-            #redirecionar
+            // redirecionar
             header("location: ../view/modulo.php?modulo=cliente&menu=consultar");
         } else {
             $_SESSION['msg'] = "Erro ao inserir!";
-            #redirecionar
+            // redirecionar
             header("location: ../view/modulo.php?modulo=cliente&menu=consultar");
         }
     }
@@ -65,26 +68,27 @@ class ControlCliente extends ControlGeral {
     /**
      * Método utilizado validar os dados dos clientes e invocar o método alterarCliente no model
      * @access public 
-     * @param Int $id id do cliente
-     * @param String $nome nome do cliente
-     * @param String $cpf CPF do cliente
+     * @param Int    $id           id do cliente
+     * @param String $nome         nome do cliente
+     * @param String $cpf          CPF do cliente
      * @param String $dtNascimento data de nascimento do cliente
-     * @param String $telefone telefone do cliente
+     * @param String $telefone     telefone do cliente
      * @return Boolean retorna TRUE se os dados forem salvos com sucesso
      */
-    function alterar($id, $nome, $cpf, $dtNascimento, $telefone) {
+    function alterar($id, $nome, $cpf, $dtNascimento, $telefone) 
+    {
 
-        #invocar métódo  e passar parâmetros
+        // invocar métódo  e passar parâmetros
         $objCliente = new ModelCliente();
 
         if ($objCliente->alterarCliente($id, $nome, $cpf, $dtNascimento, $telefone) == true) {
-            #se for alterado com sucesso mostrar a mensagem
+            // se for alterado com sucesso mostrar a mensagem
             $_SESSION['msg'] = "Alterado com sucesso!";
-            #redirecionar
+            // redirecionar
             header("location: ../view/modulo.php?modulo=cliente&menu=consultar");
         } else {
             $_SESSION['msg'] = "Erro ao alterar!";
-            #redirecionar
+            // redirecionar
             header("location: ../view/modulo.php?modulo=cliente&menu=consultar");
         }
     }
@@ -95,14 +99,15 @@ class ControlCliente extends ControlGeral {
      * @param Int $id id do cliente
      * @return Boolean retorna TRUE se os dados for excluído sucesso
      */
-    function excluir($id) {
+    function excluir($id) 
+    {
 
-        #invocar métódo  e passar parâmetros
+        // invocar métódo  e passar parâmetros
         $objCliente = new ModelCliente();
 
-        #invocar métódo  e passar parâmetros
+        // invocar métódo  e passar parâmetros
         if ($objCliente->excluirCliente($id) == true) {
-            #se for excluído com sucesso mostrar a mensagem e redirecionar
+            // se for excluído com sucesso mostrar a mensagem e redirecionar
             $_SESSION['msg'] = "Excluído com sucesso!";
             header("location: ../view/modulo.php?modulo=cliente&menu=consultar");
         } else {

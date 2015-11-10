@@ -1,10 +1,11 @@
 <?php
 
-#inclui arquivo da classe de conexão
-include_once '../model/modelConexao.class.php';
+// inclui arquivo da classe de conexão
+require_once '../model/modelConexao.class.php';
 
 
-class ModelImagem extends ModelConexao {
+class ModelImagem extends ModelConexao
+{
 
     /**
      * Atributos da classe
@@ -49,13 +50,14 @@ class ModelImagem extends ModelConexao {
     /**
      * Método utilizado para consultar os funcionarios cadastrados
      * @access public 
-     * @param Int $id id do funcionario
+     * @param Int    $id   id do funcionario
      * @param String $nome nome do funcionario
      * @return Array dados do funcionario
      */
-    public function consultar() {
+    public function consultar() 
+    {
 
-        #montar a consultar (whre 1 serve para selecionar todos os registros)
+        // montar a consultar (whre 1 serve para selecionar todos os registros)
         $sql = "SELECT
                     id_imagem,
                     imagem
@@ -65,7 +67,7 @@ class ModelImagem extends ModelConexao {
                     id_imagem DESC
                 LIMIT 1";
 
-        #executa consulta e controi um array com o resultado da consulta
+        // executa consulta e controi um array com o resultado da consulta
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);
@@ -84,20 +86,21 @@ class ModelImagem extends ModelConexao {
     /**
      * Método utilizado para consultar os funcionarios cadastrados
      * @access public
-     * @param Int $id id do funcionario
+     * @param Int    $id   id do funcionario
      * @param String $nome nome do funcionario
      * @return Array dados do funcionario
      */
-    public function inserirImagem($strImagem){
+    public function inserirImagem($strImagem)
+    {
 
         $this->setImagem('$strImagem');
-        #montar a consulta
+        // montar a consulta
         $sql = "INSERT INTO tb_imagem
                     (imagem)
                     VALUES
                     (:imagem)";
 
-        #realizar a blidagem dos dados
+        // realizar a blidagem dos dados
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);

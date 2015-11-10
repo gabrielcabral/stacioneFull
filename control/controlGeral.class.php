@@ -1,12 +1,12 @@
 ﻿<?php
 
-#iniciar_sessao
+// iniciar_sessao
 //session_start();
 
-#função para resolver problema de header
+// função para resolver problema de header
 ob_start();
 
-#define codificação
+// define codificação
 header('Content-Type: text/html; charset=UTF-8');
 
 /**
@@ -15,7 +15,8 @@ header('Content-Type: text/html; charset=UTF-8');
  * @author Sérgio Lima (professor.sergiolima@gmail.com)
  * @version 1.0.0
  */
-class ControlGeral {
+class ControlGeral
+{
 
     /**
      * Método utilizado para transforma para para o formato brasileiro
@@ -23,7 +24,8 @@ class ControlGeral {
      * @param Date $data data no formato americado (Y-m-d)
      * @return Date data no formato brasileiro (d/m/Y)
      */
-    function dataBrasileiro($data) {
+    function dataBrasileiro($data) 
+    {
 
         if ($data == null) {
             return '';
@@ -38,7 +40,8 @@ class ControlGeral {
      * @param Date $data data no formato brasileiro (d/m/Y) 
      * @return Date data no formato americano (Y-m-d)
      */
-    function dataAmericano($data) {
+    function dataAmericano($data) 
+    {
 
         if ($data == null) {
             return '';
@@ -53,7 +56,8 @@ class ControlGeral {
      * @param String $email e-mail a ser validado
      * @return Boolean retorna TRUE se o e-mail for válido
      */
-    public static function validarEmail($email) {
+    public static function validarEmail($email) 
+    {
         return preg_match("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^", $email);
     }
 
@@ -62,7 +66,8 @@ class ControlGeral {
      * @access public 
      * @param String $msg mensagem a ser exibida
      */
-    function alertaInfo($msg) {
+    function alertaInfo($msg) 
+    {
         $alerta = '';
         if (!empty($msg)) {
             $alerta = '<div class="alert alert-info">';
@@ -78,7 +83,8 @@ class ControlGeral {
      * @access public
      * @param String $msg mensagem a ser exibida
      */
-    function alertaError($msg) {
+    function alertaError($msg) 
+    {
         $alerta = '';
         if (!empty($msg)) {
             $alerta = '<div class="alert alert-danger">';
@@ -94,7 +100,8 @@ class ControlGeral {
      * @access public
      * @param String $msg mensagem a ser exibida
      */
-    function alertaSuccess($msg) {
+    function alertaSuccess($msg) 
+    {
         $alerta = '';
         if (!empty($msg)) {
             $alerta = '<div class="alert alert-success">';
@@ -118,15 +125,16 @@ class ControlGeral {
         $k = 0;
         for($i = 0; $i<=strlen($mask)-1; $i++)
         {
-            if($mask[$i] == '#')
-            {
-                if(isset($val[$k]))
-                    $maskared .= $val[$k++];
+            if($mask[$i] == '#') {
+                if(isset($val[$k])) {
+                    $maskared .= $val[$k++]; 
+                }
             }
             else
             {
-                if(isset($mask[$i]))
-                    $maskared .= $mask[$i];
+                if(isset($mask[$i])) {
+                    $maskared .= $mask[$i]; 
+                }
             }
         }
         return $maskared;
@@ -135,7 +143,8 @@ class ControlGeral {
 
 
 
-    public function limpaCPF_CNPJ($strValor){
+    public function limpaCPF_CNPJ($strValor)
+    {
         $strValor = trim($strValor);
         $strValor = str_replace(".", "", $strValor);
         $strValor = str_replace(",", "", $strValor);
@@ -152,12 +161,13 @@ class ControlGeral {
      * @access public 
      * @param String $nomeSistema nome do sistema a ser exibido
      */
-    function menu($nomeSistema = 'Stacione') {
+    function menu($nomeSistema = 'Stacione') 
+    {
         echo' <nav class="navbar-default navbar-side" role="navigation">
     <div class="sidebar-collapse">
         <ul class="nav" id="main-menu">
             <li class="text-center">
-                <img src="../bootstrap/img/find_user.png" class="user-image img-responsive"/>
+                <img src="../bootstrap/img/logo.JPG" class="user-image img-responsive"/>
             </li>
            <li>
                 <a class="active-menu"  href="modulo.php?modulo=principal"><i class="fa fa-dashboard fa-3x"></i> Inicio</a>
@@ -194,7 +204,7 @@ class ControlGeral {
 
 
           <li  >
-                <a  href="relatorios.php"><i class="fa fa-line-chart fa-3x"></i> Relatório</a>
+                <a  href="modulo.php?modulo=relatorio&menu=consultar"><i class="fa fa-line-chart fa-3x"></i> Relatório</a>
             </li>
            <li>
                   <a class="menu"  href="modulo.php?modulo=funcionario&menu=alterarSenha"><i class="fa fa-bolt fa-3x"></i> Aletrar Senha</a>
@@ -207,7 +217,8 @@ class ControlGeral {
     </div>
 </nav>';
     }
-    function topo(){
+    function topo()
+    {
         echo '<nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
 
@@ -218,7 +229,7 @@ class ControlGeral {
         float: right;
         font-size: 16px;">Usuário logado '.$_SESSION["UsuarioNome"] .' no dia  '. date("d/m/Y").' </div>
             </nav>';
-        }
+    }
 
 
 

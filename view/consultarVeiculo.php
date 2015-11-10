@@ -18,36 +18,42 @@ $cv = new ControlVeiculo();
 #verfica o o botão 'consultar' foi acionado
 if (isset($_POST["consultar"])) {
     #passa o cpf e nome para consultar
-
-    $veiculos = $cv->consultar($_POST);
+var_dump($_POST);
+  $veiculos = $cv->consultar($_POST);
 } else {
     #mostrar todos os funcionarios
-    $veiculos = $cv->consultar();
+   // $veiculos = $cv->consultar();
 }
 
 ?>
 
 <html lang="pt-br">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+    <link rel="icon" href="../bootstrap/img/logo.JPG" type="image/x-icon" />
+    <link rel="shortcut icon" href="../bootstrap/img/logo.JPG" type="image/x-icon" />
     <title>STACIONE</title>
-    <link rel="icon" type="image/jpg" href="../bootstrap/img/logo.JPG" />
 
     <!-- BOOTSTRAP STYLES-->
+    <!-- BOOTSTRAP STYLES-->
     <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script src="../bootstrap/js/jquery-2.1.4.js"></script>
     <!-- FONTAWESOME STYLES-->
     <link href="../bootstrap/css/font-awesome.css" rel="stylesheet" />
     <!-- MORRIS CHART STYLES-->
     <link href="../bootstrap/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
     <!-- CUSTOM STYLES-->
     <link href="../bootstrap/css/custom.css" rel="stylesheet" />
-    <script src="../bootstrap/js/jquery-2.1.4.js"></script>
-    <script src="../bootstrap/js/jquery.mask.js"></script>
+
+    <script src="../bootstrap/js/jquery.maskedinput.js"></script>
+
     <script src="../bootstrap/js/bootstrap-tooltip.js"></script>
     <script src="../bootstrap/js/bootstrap-confirmation.js"></script>
+    <script src="../bootstrap/js/bootstrap-datepicker.js" type="text/javascript"></script>
+    <script src="../bootstrap/js/bootstrap-datepicker.pt-BR.min.js" type="text/javascript"></script>
 
-
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
 
 
     <script type="text/javascript" src="../public/js/veiculo.js">
@@ -92,7 +98,23 @@ if (isset($_POST["consultar"])) {
 
             <fieldset>
 
-                <form method="post" class="form-horizontal">
+                <form method="post" class="form-horizontal" id="formVeiculos">
+
+
+                    <!-- Select Basic -->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="veiculo">Tipo de Veiculo:</label>
+                        <div class="col-md-4">
+                            <select id="tpveiculo" name="tpveiculo" class="form-control">
+                                <option value="0">Selecione</option>
+                                <option value="carro">Carro</option>
+                                <option value="caminhao">Caminhão</option>
+                                <option value="moto">Moto</option>
+                            </select>
+                        </div>
+                    </div>
+
+
 
                     <!-- Text input-->
                     <div class="form-group">
@@ -101,13 +123,7 @@ if (isset($_POST["consultar"])) {
                         <div class="col-md-4">
                             <select id="nome_fabricante" name="nome_fabricante"  class="form-control input-md">
 
-                                <option value="">Selecione..</option>
-                                <?php
-                                $fabricantes = $cv->selectFabricante();
-                                foreach($fabricantes as $value){
-                                    echo  "<option value='".$value['ID_fabricante']."'>".$value['nome_fabricante']."</option>";
-                                }
-                                ?>
+
                             </select>
 
                         </div>
@@ -118,7 +134,7 @@ if (isset($_POST["consultar"])) {
                         <label class="col-md-2 control-label" for="nome">Modelo:</label>
 
                         <div class="col-md-4">
-                            <select id="veiculo" name="veiculo" class="form-control input-md">
+                            <select id="modelo" name="modelo" class="form-control input-md">
 
                             </select>
 
@@ -130,13 +146,13 @@ if (isset($_POST["consultar"])) {
 
                         <div class="col-md-4" style="text-align: right">
                             <button type="reset" class="btn btn-danger" name="consultar">Limpar</button>
-                            <button type="submit" class="btn btn-primary" name="consultar">Consultar</button>
+                            <button class="btn btn-primary" id="consultar" name="consultar">Consultar</button>
                         </div>
                     </div>
 
                 </form>
             </fieldset>
-            <div class="jumbotron">
+            <div class="jumbotron" id="divVeiculos" >
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
@@ -158,7 +174,7 @@ if (isset($_POST["consultar"])) {
                                          ?>
                                             <tr id="codigo_<?= $item['id_veiculo']?>">
                                                 <td><?=$item['nome_fabricante'];?></td>
-                                                <td><?= $item['veiculo'] ?></td>
+                                                <td><?= $item['nome_veiculo'] ?></td>
 
                                                                                                <td>
                                                     <p data-placement='top' data-toggle='tooltip' title='Alterar'>
@@ -197,7 +213,15 @@ if (isset($_POST["consultar"])) {
 </div>
 <!-- /. WRAPPER  -->
 <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+<!-- JQUERY SCRIPTS -->
+<script src="../bootstrap/js/jquery-2.1.4.js"></script>
+<!-- BOOTSTRAP SCRIPTS -->
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<!-- METISMENU SCRIPTS -->
+<script src="../bootstrap/js/jquery.metisMenu.js"></script>
 
+<!-- CUSTOM SCRIPTS -->
+<script src="../bootstrap/js/custom.js"></script>
 
 
 </body>

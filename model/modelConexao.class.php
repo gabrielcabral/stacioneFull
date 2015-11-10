@@ -1,6 +1,6 @@
 <?php
 
-#não mostrar erros de notice
+// não mostrar erros de notice
 error_reporting(~E_ALL & ~E_NOTICE & ~E_WARNING);
 
 /**
@@ -9,7 +9,8 @@ error_reporting(~E_ALL & ~E_NOTICE & ~E_WARNING);
  * @author Sérgio Lima (professor.sergiolima@gmail.com)
  * @version 1.0.0
  */
-class ModelConexao {
+class ModelConexao
+{
 
     /**
      * Atributos da classe
@@ -23,43 +24,53 @@ class ModelConexao {
     /**
      * Métodos get e sets das classes
      */
-    public function getHost() {
+    public function getHost() 
+    {
         return $this->host;
     }
 
-    public function getUser() {
+    public function getUser() 
+    {
         return $this->user;
     }
 
-    public function getSenha() {
+    public function getSenha() 
+    {
         return $this->senha;
     }
 
-    public function getDbase() {
+    public function getDbase() 
+    {
         return $this->dbase;
     }
 
-    public function getLink() {
+    public function getLink() 
+    {
         return $this->link;
     }
 
-    public function setHost($host) {
+    public function setHost($host) 
+    {
         $this->host = $host;
     }
 
-    public function setUser($user) {
+    public function setUser($user) 
+    {
         $this->user = $user;
     }
 
-    public function setSenha($senha) {
+    public function setSenha($senha) 
+    {
         $this->senha = $senha;
     }
 
-    public function setDbase($dbase) {
+    public function setDbase($dbase) 
+    {
         $this->dbase = $dbase;
     }
 
-    public function setLink($link) {
+    public function setLink($link) 
+    {
         $this->link = $link;
     }
 
@@ -67,15 +78,16 @@ class ModelConexao {
      * Método para conexao com o banco de dados
      * @return $pdo retorna o link da conexão com o banco em caso de sucesso
      */
-    public function conectar() {
+    public function conectar() 
+    {
 
-        #setar as cofigurações do banco de dados
+        // setar as cofigurações do banco de dados
         $this->setHost("localhost");
         $this->setUser("root");
         $this->setSenha("root");
         $this->setDbase("dbstacione");
 
-        #conecta ao banco de dados usando o PHP PDO
+        // conecta ao banco de dados usando o PHP PDO
         try {
             $pdo = new PDO("mysql:host={$this->getHost()};dbname={$this->getDbase()}", "{$this->getUser()}", "{$this->getSenha()}", array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

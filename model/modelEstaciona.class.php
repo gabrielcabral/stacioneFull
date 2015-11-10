@@ -1,10 +1,11 @@
 <?php
 
-#inclui arquivo da classe de conexão
-include_once '../model/modelConexao.class.php';
+// inclui arquivo da classe de conexão
+require_once '../model/modelConexao.class.php';
 
 
-class ModelEstaciona extends ModelConexao {
+class ModelEstaciona extends ModelConexao
+{
 
     /**
      * Atributos da classe
@@ -134,60 +135,64 @@ class ModelEstaciona extends ModelConexao {
     /**
      * método mágico para não permitir clonar a classe
      */
-    public function __clone() {
+    public function __clone() 
+    {
         ;
     }
 
     /**
-     * Método utilizado para consultar os funcionarios cadastrados
+     * Método utilizado para consultar a entrada cadastrados
      * @access public 
-     * @param Int $id id do funcionario
-     * @param String $nome nome do funcionario
-     * @return Array dados do funcionario
+     * @param Int
+     * @param String
+     * @return Array dados do entrada
      */
-    public function consultar($arrEntrada) {
+    public function consultar($arrEntrada) 
+    {
 
-        #setar os valores
+        // setar os valores
         $this->setPlaca($arrEntrada['placa']);
         $this->setEntrada($arrEntrada['entrada']);
         $this->setIdEntradaSaida($arrEntrada['id']);
-        #montar a consultar (whre 1 serve para selecionar todos os registros)
+        // montar a consultar (whre 1 serve para selecionar todos os registros)
         $sql = "SELECT
                     *
                 FROM
                     tb_entrada_saida es
                 INNER JOIN tb_veiculo v ON v.id_veiculo = es.ID_VEICULO
                 INNER JOIN tb_fabricante f ON f.ID_fabricante = v.id_fabricante
-                WHERE 1=1
+                INNER JOIN tb_imagem i ON i.id_imagem = es.ID_IMAGEM
+                WHERE
+                    1 = 1
                    ";
 
-        #verificar se foi passado algum valor de $id_funcionario    
+        // verificar se foi passado algum valor de $id_funcionario    
         if ($this->getPlaca() != null) {
             $sql.= " and es.PLACA  =:placa";
         }
-        #verificar se foi passado algum valor de $id_
+        // verificar se foi passado algum valor de $id_
         if ($this->getIdEntradaSaida() != null) {
             $sql.= " and es.ID_ENTRADA_SAIDA  =:id";
         }
-        #verificar se foi passado algum valor de $id_funcionario
+        // verificar se foi passado algum valor de $id_funcionario
         if ($this->getEntrada() != null) {
             $sql.= " and es.ENTRADA BETWEEN :entrada and :saida";
         }
 
         $sql.= " and  es.SAIDA IS NULL ORDER By es.ENTRADA ASC ";
-        #executa consulta e controi um array com o resultado da consulta
+        // executa consulta e controi um array com o resultado da consulta
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);
-            #verificar se foi passado algum valor de $id_funcionario
+            // verificar se foi passado algum valor de $id_funcionario
             if ($this->getPlaca() != null) {
                 $query->bindValue(':placa', $this->getPlaca(), PDO::PARAM_STR);
             }
-            #verificar se foi passado algum valor de $id_funcionario
+            // verificar se foi passado algum valor de $id_funcionario
             if ($this->getIdEntradaSaida() != null) {
                 $query->bindValue(':id', $this->getIdEntradaSaida(), PDO::PARAM_INT);
             }
-            #verificar se foi passado algum valor de $id_funcionario
+            // verificar se foi passado algum valor de $id_funcionario
             if ($this->getEntrada() != null) {
                 $query->bindValue(':entrada', $this->getEntrada(), PDO::PARAM_STR);
                 $query->bindValue(':saida', $this->getEntrada(), PDO::PARAM_STR);
@@ -206,17 +211,18 @@ class ModelEstaciona extends ModelConexao {
     /**
      * Método utilizado para consultar os funcionarios cadastrados
      * @access public
-     * @param Int $id id do funcionario
+     * @param Int    $id   id do funcionario
      * @param String $nome nome do funcionario
      * @return Array dados do funcionario
      */
-    public function consultarParaPagamento($arrEntrada) {
+    public function consultarParaPagamento($arrEntrada) 
+    {
 
-        #setar os valores
+        // setar os valores
         $this->setPlaca($arrEntrada['placa']);
         $this->setEntrada($arrEntrada['entrada']);
         $this->setIdEntradaSaida($arrEntrada['id']);
-        #montar a consultar (whre 1 serve para selecionar todos os registros)
+        // montar a consultar (whre 1 serve para selecionar todos os registros)
         $sql = "SELECT
                     *
                 FROM
@@ -227,18 +233,18 @@ class ModelEstaciona extends ModelConexao {
                    ";
 
 
-        #verificar se foi passado algum valor de $id_
+        // verificar se foi passado algum valor de $id_
         if ($this->getIdEntradaSaida() != null) {
             $sql.= " and es.ID_ENTRADA_SAIDA  =:id";
         }
 
 
-        #executa consulta e controi um array com o resultado da consulta
+        // executa consulta e controi um array com o resultado da consulta
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);
 
-            #verificar se foi passado algum valor de $id_funcionario
+            // verificar se foi passado algum valor de $id_funcionario
             if ($this->getIdEntradaSaida() != null) {
                 $query->bindValue(':id', $this->getIdEntradaSaida(), PDO::PARAM_INT);
             }
@@ -258,22 +264,23 @@ class ModelEstaciona extends ModelConexao {
     /**
      * Método utilizado para consultar os funcionarios cadastrados
      * @access public
-     * @param Int $id id do funcionario
+     * @param Int    $id   id do funcionario
      * @param String $nome nome do funcionario
      * @return Array dados do funcionario
      */
-    public function consultarVeiculo() {
+    public function consultarVeiculo() 
+    {
 
-        #setar os valores
+        // setar os valores
 
 
-        #montar a consultar (whre 1 serve para selecionar todos os registros)
+        // montar a consultar (whre 1 serve para selecionar todos os registros)
         $sql = "SELECT
                  DISTINCT( veiculo ),id_veiculo
                 FROM
                      tb_veiculo  ORDER BY  veiculo ASC ";
 
-        #executa consulta e controi um array com o resultado da consulta
+        // executa consulta e controi um array com o resultado da consulta
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);
@@ -289,18 +296,19 @@ class ModelEstaciona extends ModelConexao {
     /**
      * Método utilizado para consultar os funcionarios cadastrados
      * @access public
-     * @param Int $id id do funcionario
+     * @param Int    $id   id do funcionario
      * @param String $nome nome do funcionario
      * @return Array dados do funcionario
      */
-    public function consultarVagas() {
-        #montar a consultar (whre 1 serve para selecionar todos os registros)
+    public function consultarVagas() 
+    {
+        // montar a consultar (whre 1 serve para selecionar todos os registros)
         $sql = "SELECT
                 *
                 FROM
                      tb_vaga";
 
-        #executa consulta e controi um array com o resultado da consulta
+        // executa consulta e controi um array com o resultado da consulta
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);
@@ -316,15 +324,16 @@ class ModelEstaciona extends ModelConexao {
     /**
      * Método utilizado para consultar os funcionarios cadastrados
      * @access public
-     * @param Int $id id do funcionario
+     * @param Int    $id   id do funcionario
      * @param String $nome nome do funcionario
      * @return Array dados do funcionario
      */
-    public function consultarPreco() {
-        #montar a consultar (whre 1 serve para selecionar todos os registros)
+    public function consultarPreco() 
+    {
+        // montar a consultar (whre 1 serve para selecionar todos os registros)
         $sql = "SELECT * from tb_preco";
 
-        #executa consulta e controi um array com o resultado da consulta
+        // executa consulta e controi um array com o resultado da consulta
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);
@@ -340,21 +349,22 @@ class ModelEstaciona extends ModelConexao {
     /**
      * Método utilizado para inserir um funcionario
      * @access public 
-     * @param String $nome nome do funcionario
-     * @param String $cpf CPF do funcionario
+     * @param String $nome         nome do funcionario
+     * @param String $cpf          CPF do funcionario
      * @param String $dtNascimento data de nascimento do funcionario
-     * @param String $telefone telefone do funcionario
+     * @param String $telefone     telefone do funcionario
      * @return Boolean retorna TRUE se os dados forem salvos com sucesso
      */
-    function inserirEntrada($arrEntrada) {
+    function inserirEntrada($arrEntrada) 
+    {
 
-        #setar os valores
+        // setar os valores
         $this->setIdFuncionario($_SESSION['UsuarioID']);
-        $this->setIdVeiculo($arrEntrada['veiculo']);
+        $this->setIdVeiculo($arrEntrada['modelo']);
         $this->setIdImagem($arrEntrada['id_imagem']);
-        $this->setPlaca($arrEntrada['placa']);
+        $this->setPlaca(strtoupper($arrEntrada['placa']));
 
-        #montar a consulta
+        // montar a consulta
         $sql = "INSERT INTO tb_entrada_saida (
                     PLACA,
                     ENTRADA,
@@ -371,7 +381,7 @@ class ModelEstaciona extends ModelConexao {
                         :ID_IMAGEM
                     )";
 
-        #realizar a blidagem dos dados
+        // realizar a blidagem dos dados
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);
@@ -405,19 +415,20 @@ class ModelEstaciona extends ModelConexao {
      * @param Int $id id do funcionario
      * @return Boolean retorna TRUE se os dados for excluído sucesso
      */
-    public function excluirfuncionario($id_funcionario) {
+    public function excluirfuncionario($id_funcionario) 
+    {
 
-        #setar os dados
+        // setar os dados
         $this->setIdFuncionario($id_funcionario);
 
-        #montar a consulta
+        // montar a consulta
         $sql = "UPDATE tb_funcionario
                 SET
                    ATIVO = 0
                 WHERE
                     ID_FUNCIONARIO = :id_funcionario";
 
-        #realizar a blidagem dos dados
+        // realizar a blidagem dos dados
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);
@@ -430,10 +441,11 @@ class ModelEstaciona extends ModelConexao {
         }
     }
 
-    public function alteraVaga($arrVaga){
+    public function alteraVaga($arrVaga)
+    {
 
         $this->setIdFuncionario($_SESSION['UsuarioID']);
-        #montar a consulta
+        // montar a consulta
         $sql = "UPDATE tb_vaga
                     SET
                     qt_vaga = ".$arrVaga['vaga'].",
@@ -442,7 +454,7 @@ class ModelEstaciona extends ModelConexao {
                     WHERE
                     id_vaga = 1";
 
-        #realizar a blidagem dos dados
+        // realizar a blidagem dos dados
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);
@@ -456,17 +468,18 @@ class ModelEstaciona extends ModelConexao {
     }
 
 
-    public function alterarPreco($arrVaga){
+    public function alterarPreco($arrVaga)
+    {
 
 
-        #montar a consulta
+        // montar a consulta
         $sql = "UPDATE tb_preco
                     SET
                     PRECO_MINUTO = ".$arrVaga['preco']."
                     WHERE
                     ID_PRECO = ".$arrVaga['id_preco'];
 
-        #realizar a blidagem dos dados
+        // realizar a blidagem dos dados
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);
@@ -478,10 +491,11 @@ class ModelEstaciona extends ModelConexao {
         }
     }
 
-    public function saida($id){
+    public function saida($id)
+    {
         $this->setIdFuncionario($_SESSION['UsuarioID']);
         $this->setIdEntradaSaida($id);
-        #montar a consulta
+        // montar a consulta
         $sql = "UPDATE tb_entrada_saida
                     SET
                     SAIDA = CURRENT_TIMESTAMP,
@@ -489,7 +503,7 @@ class ModelEstaciona extends ModelConexao {
                     WHERE
                     ID_ENTRADA_SAIDA = :id";
 
-        #realizar a blidagem dos dados
+        // realizar a blidagem dos dados
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);

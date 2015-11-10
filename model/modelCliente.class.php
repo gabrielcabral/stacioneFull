@@ -1,7 +1,7 @@
 <?php
 
-#inclui arquivo da classe de conexão
-include_once '../model/modelConexao.class.php';
+// inclui arquivo da classe de conexão
+require_once '../model/modelConexao.class.php';
 
 /**
  * Criado em 01/01/2015
@@ -9,7 +9,8 @@ include_once '../model/modelConexao.class.php';
  * @author Sérgio Lima (professor.sergiolima@gmail.com)
  * @version 1.0.0
  */
-class ModelCliente extends ModelConexao {
+class ModelCliente extends ModelConexao
+{
 
     /**
      * Atributos da classe
@@ -23,90 +24,102 @@ class ModelCliente extends ModelConexao {
     /**
      * Métodos get e sets das classes
      */
-    public function getId() {
+    public function getId() 
+    {
         return $this->id;
     }
 
-    public function getNome() {
+    public function getNome() 
+    {
         return $this->nome;
     }
 
-    public function getCpf() {
+    public function getCpf() 
+    {
         return $this->cpf;
     }
 
-    public function getDtNascimento() {
+    public function getDtNascimento() 
+    {
         return $this->dtNascimento;
     }
 
-    public function getTelefone() {
+    public function getTelefone() 
+    {
         return $this->telefone;
     }
 
-    public function setId($id) {
+    public function setId($id) 
+    {
         $this->id = $id;
     }
 
-    public function setNome($nome) {
+    public function setNome($nome) 
+    {
         $this->nome = $nome;
     }
 
-    public function setCpf($cpf) {
+    public function setCpf($cpf) 
+    {
         $this->cpf = $cpf;
     }
 
-    public function setDtNascimento($dtNascimento) {
+    public function setDtNascimento($dtNascimento) 
+    {
         $this->dtNascimento = $dtNascimento;
     }
 
-    public function setTelefone($telefone) {
+    public function setTelefone($telefone) 
+    {
         $this->telefone = $telefone;
     }
 
     /**
      * método mágico para não permitir clonar a classe
      */
-    public function __clone() {
+    public function __clone() 
+    {
         ;
     }
 
     /**
      * Método utilizado para consultar os clientes cadastrados
      * @access public 
-     * @param Int $id id do cliente
+     * @param Int    $id   id do cliente
      * @param String $nome nome do cliente
      * @return Array dados do cliente
      */
-    public function consultarCliente($id_cliente, $nome) {
+    public function consultarCliente($id_cliente, $nome) 
+    {
 
-        #setar os valores
+        // setar os valores
         $this->setId($id_cliente);
         $this->setNome($nome);
 
-        #montar a consultar (whre 1 serve para selecionar todos os registros)
+        // montar a consultar (whre 1 serve para selecionar todos os registros)
         $sql = "select * from tb_cliente where true";
 
-        #verificar se foi passado algum valor de $id_cliente    
+        // verificar se foi passado algum valor de $id_cliente    
         if ($this->getId() != null) {
             $sql.= " and id=:id_cliente";
         }
 
-        #verificar se foi passado algum valor de $nome 
+        // verificar se foi passado algum valor de $nome 
         if ($this->getNome() != null) {
             $sql.= " and nome LIKE :nome ";
         }
 
-        #executa consulta e controi um array com o resultado da consulta
+        // executa consulta e controi um array com o resultado da consulta
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);
 
-            #verificar se foi passado algum valor de $id_cliente   
+            // verificar se foi passado algum valor de $id_cliente   
             if ($this->getId() != null) {
                 $query->bindValue(':id_cliente', $this->getId(), PDO::PARAM_INT);
             }
 
-            #verificar se foi passado algum valor de $nome 
+            // verificar se foi passado algum valor de $nome 
             if ($this->getNome() != null) {
                 $this->setNome("%" . $nome . "%");
                 $query->bindValue(':nome', $this->getNome(), PDO::PARAM_STR);
@@ -125,26 +138,27 @@ class ModelCliente extends ModelConexao {
     /**
      * Método utilizado para inserir um cliente
      * @access public 
-     * @param String $nome nome do cliente
-     * @param String $cpf CPF do cliente
+     * @param String $nome         nome do cliente
+     * @param String $cpf          CPF do cliente
      * @param String $dtNascimento data de nascimento do cliente
-     * @param String $telefone telefone do cliente
+     * @param String $telefone     telefone do cliente
      * @return Boolean retorna TRUE se os dados forem salvos com sucesso
      */
-    function inserirCliente($nome, $cpf, $dtNascimento, $telefone) {
+    function inserirCliente($nome, $cpf, $dtNascimento, $telefone) 
+    {
 
-        #setar os dados
+        // setar os dados
         $this->setNome($nome);
         $this->setCpf($cpf);
         $this->setDtNascimento($dtNascimento);
         $this->setTelefone($telefone);
         echo $this->getTelefone();
 
-        #montar a consulta
+        // montar a consulta
         $sql = "INSERT INTO tb_cliente (id,nome, cpf, dtNascimento, telefone) "
                 . "VALUES (null,:nome,:cpf,:dtNascimento,:telefone)";
 
-        #realizar a blidagem dos dados
+        // realizar a blidagem dos dados
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);
@@ -155,7 +169,7 @@ class ModelCliente extends ModelConexao {
             $query->execute();
             return true;
         } catch (PDOException $e) {
-            #echo $e->getMessage();
+            // echo $e->getMessage();
             return false;
         }
     }
@@ -163,26 +177,27 @@ class ModelCliente extends ModelConexao {
     /**
      * Método utilizado para alterar um cliente
      * @access public 
-     * @param Int $id id do cliente
-     * @param String $nome nome do cliente
-     * @param String $cpf CPF do cliente
+     * @param Int    $id           id do cliente
+     * @param String $nome         nome do cliente
+     * @param String $cpf          CPF do cliente
      * @param String $dtNascimento data de nascimento do cliente
-     * @param String $telefone telefone do cliente
+     * @param String $telefone     telefone do cliente
      * @return Boolean retorna TRUE se os dados forem salvos com sucesso
      */
-    public function alterarCliente($id_cliente, $nome, $cpf, $dtNascimento, $telefone) {
+    public function alterarCliente($id_cliente, $nome, $cpf, $dtNascimento, $telefone) 
+    {
 
-        #setar os dados
+        // setar os dados
         $this->setId($id_cliente);
         $this->setNome($nome);
         $this->setCpf($cpf);
         $this->setDtNascimento($dtNascimento);
         $this->setTelefone($telefone);
 
-        #montar a consulta
+        // montar a consulta
         $sql = "UPDATE tb_cliente SET nome = :nome, cpf = :cpf, dtNascimento = :dtNascimento , telefone =:telefone WHERE id = :id_cliente";
 
-        #realizar a blidagem dos dados
+        // realizar a blidagem dos dados
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);
@@ -194,7 +209,7 @@ class ModelCliente extends ModelConexao {
             $query->execute();
             return true;
         } catch (PDOException $e) {
-            #echo $e->getMessage();
+            // echo $e->getMessage();
             return false;
         }
     }
@@ -205,15 +220,16 @@ class ModelCliente extends ModelConexao {
      * @param Int $id id do cliente
      * @return Boolean retorna TRUE se os dados for excluído sucesso
      */
-    public function excluirCliente($id_cliente) {
+    public function excluirCliente($id_cliente) 
+    {
 
-        #setar os dados
+        // setar os dados
         $this->setId($id_cliente);
 
-        #montar a consulta
+        // montar a consulta
         $sql = "DELETE FROM tb_cliente WHERE id=:id_cliente";
 
-        #realizar a blidagem dos dados
+        // realizar a blidagem dos dados
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);
@@ -221,7 +237,7 @@ class ModelCliente extends ModelConexao {
             $query->execute();
             return true;
         } catch (PDOException $e) {
-            #$e->getMessage();   
+            // $e->getMessage();   
             return false;
         }
     }
