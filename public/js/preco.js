@@ -48,20 +48,7 @@ $(document).ready(
         $('#recebido').bind('keypress',mask.money)
 
 
-        $('#tpPagamento').click(
-            function () {
-                //$( "#tpPagamento" ).change(function() {
-                alert($('#tpPagamento').val());
-                var tpPagamento= $('#tpPagamento').val();
-                /* var valor = $('#total').val();
-                if(tpPagamento == 1){
-                }else if(tpPagamento == 2 ||tpPagamento == 3 ){
-                $("#recebido").val(valor);
-                }*/
 
-
-            }
-        );
 
     }
 );

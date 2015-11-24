@@ -16,57 +16,47 @@ $cc = new ControlFuncionario();
 $_GET['id_funcionario'] = $_GET['id'];
 $funcionarios = $cc->consultar($_GET);
 // verfica o o botão 'consultar' foi acionado
-if (isset($_POST["inserir"])) {
+if (isset($_POST["alterar"])) {
     // passa os dados para inserir
 
-    $cc->inserir($_POST);
+    $cc->alterar($_POST);
 }
 ?>
 <html lang="pt-br">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" href="../bootstrap/img/logo.JPG" type="image/x-icon"/>
+    <link rel="shortcut icon" href="../bootstrap/img/logo.JPG" type="image/x-icon"/>
     <title>STACIONE</title>
     <!-- BOOTSTRAP STYLES-->
+    <script src="../bootstrap/js/jquery-2.1.4.js"></script>
     <link href="../bootstrap/css/bootstrap.css" rel="stylesheet"/>
     <!-- FONTAWESOME STYLES-->
     <link href="../bootstrap/css/font-awesome.css" rel="stylesheet"/>
+    <!-- MORRIS CHART STYLES-->
+    <link href="../bootstrap/js/morris/morris-0.4.3.min.css" rel="stylesheet"/>
     <!-- CUSTOM STYLES-->
     <link href="../bootstrap/css/custom.css" rel="stylesheet"/>
-    <link href="../bootstrap/css/jquery-ui.css" rel="stylesheet"/>
-    <link href="../bootstrap/css/bootstrap-datepicker3.css" rel="stylesheet"/>
-</head>
-<!--<script src="../bootstrap/js/jquery-1.10.2.js"></script>-->
-<script src="../bootstrap/js/jquery-2.1.4.js"></script
-    <!-- BOOTSTRAP SCRIPTS -->
-<script src="../bootstrap/js/bootstrap.min.js"></script>
-<!-- METISMENU SCRIPTS -->
-<script src="../bootstrap/js/jquery.metisMenu.js"></script>
-<!-- CUSTOM SCRIPTS -->
-<link rel="stylesheet" href="../bootstrap/css/jquery-ui.css">
-<!--<script src="../bootstrap/js/jquery-1.10.2.js"></script>
-<script src="../bootstrap/js/jquery-ui.js"></script>
-<script src="../bootstrap/js/jquery.js"></script>-->
-<script src="../bootstrap/js/bootstrap-datepicker.js" type="text/javascript"></script>
-<script src="../bootstrap/js/bootstrap-datepicker.pt-BR.min.js" type="text/javascript"></script>
-<script src="../bootstrap/js/jquery.maskedinput.js" type="text/javascript"></script>
-<script src="../public/js/funcionario.js"></script>
-<script src="../bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-    $('#dtNascimento').datepicker({
-        format: "dd/mm/yyyy",
-        todayBtn: "linked",
-        language: "pt-BR",
-        orientation: "top left",
-        autoclose: true,
-        beforeShowMonth: function (date) {
-            switch (date.getMonth()) {
-                case 8:
-                    return false;
-            }
-        }
-    });
-</script>
+    <script src="../bootstrap/js/jquery.maskedinput.js"></script>
+    <script src="../bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="../bootstrap/js/jquery.validate.js"></script>
+    <script src="../bootstrap/js/prettify.js"></script>
+    <script src="../bootstrap/js/jquery.bsAlerts.js"></script>
+    <script src="../bootstrap/js/bootstrap-confirmation.js"></script>
+    <script src="../bootstrap/js/bootstrap-datepicker.js" type="text/javascript"></script>
+    <script src="../bootstrap/js/bootstrap-datepicker.pt-BR.min.js" type="text/javascript"></script>
+    <script src="../public/js/funcionario.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        jQuery.noConflict();
+        jQuery(function ($) {
+            $('#dtNascimento').datepicker({
+                format: "dd/mm/yyyy",
+                language: "pt-BR"
+
+            });
+        });
+    </script>
+    <head>
 <body>
 <div id="wrapper">
     <?php
@@ -79,10 +69,10 @@ if (isset($_POST["inserir"])) {
             <div class="alert alert-info" id="info" role="alert" style="display: none"></div>
             <div class="alert alert-warning" id="warning" role="alert" style="display: none"></div>
             <div class="alert alert-danger" id="danger" role="alert" style="display: none"></div>
-            <form class="form-horizontal" id="formFunc">
+            <form class="form-horizontal" id="formFuncAlt" method="post">
                 <fieldset>
                     <!-- Form Name -->
-                    <legend><h2>Cadastro Funcionário</h2></legend>
+                    <legend><h2>Altera Funcionário</h2></legend>
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-2 control-label" for="nome" style="text-align: left">Nome:</label>
@@ -99,8 +89,8 @@ if (isset($_POST["inserir"])) {
 
                         <div class="col-md-5">
                             <input id="cpf_funcionario" name="cpf_funcionario" type="text"
-                                   value="<?= $cc->mascara($funcionarios[0]['CPF_FUNCIONARIO'], '###.###.###-##') ?>"
-                                   placeholder="CPF" class="form-control input-md mascaraCpf" required="">
+                                   value="<?=$funcionarios[0]['CPF_FUNCIONARIO']?>"
+                                   placeholder="CPF" class="form-control input-md mascaraCpf " required="">
                             <span class="help-block" id="cpfValidado">CPF Inválido!</span>
                         </div>
                     </div>
@@ -153,10 +143,11 @@ if (isset($_POST["inserir"])) {
                             </select>
                         </div>
                     </div>
+                    <input id="id_funcionario" name="id_funcionario" value="<?= $funcionarios[0]['ID_FUNCIONARIO'] ?>" type="hidden" />
                     <!-- Button -->
                     <div class="form-group">
                         <div class="col-md-7" style="text-align: right">
-                            <button id="aletrar" name="alterar" class="btn btn-warning"><span
+                            <button id="alterar" name="alterar" class="btn btn-warning"><span
                                     class="glyphicon glyphicon-pencil"></span> Alterar
                             </button>
                         </div>

@@ -1,13 +1,13 @@
 <script src="bootstrap/js/bootstrap.min.js" ></script>
 <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
 <link rel="stylesheet" href="bootstrap/css/font-awesome.min.css" />
-
-<div class="container">
+<body style="background-color: #c3c3c3" >
+<div class="container"  >
     <div class="row text-center ">
         <div class="col-md-12">
             <br /><br />
             <h2></h2>
-            <img src="bootstrap/img/logo.JPG" style="width: 200px; height: 200px">
+            <img src="bootstrap/img/logo1.jpg" style="width: 200px; height: 200px">
             <h5></h5>
             <br />
         </div>
@@ -51,4 +51,4 @@
 
     </div>
 </div>
-
+</body>

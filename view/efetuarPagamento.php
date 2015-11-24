@@ -21,9 +21,11 @@ $to = ($segunto1 - $segunto2);
 #converter o tempo em minutos
 $mins = round(($to / 60));
 $total = $mins * $preco['PRECO_MINUTO'];
-if (isset($_POST["alterar"])) {
+if (isset($_POST["receber"])) {
     #passa os dados para inserir
-    $ce->alterarpreco($_POST);
+
+    var_dump($_POST);die();
+    $ce->efetuarPagamento($_POST);
 }
 ?>
 <html lang="pt-br">
@@ -42,7 +44,7 @@ if (isset($_POST["alterar"])) {
     <script src="../bootstrap/js/jquery.maskMoney.js"></script>
     <script src="../bootstrap/js/bootstrap-tooltip.js"></script>
     <script src="../bootstrap/js/bootstrap-confirmation.js"></script>
-    <script type="text/javascript" src="../public/js/preco.js"></script>
+    <script type="text/javascript" src="../public/js/pagamento.js"></script>
     <script src="../bootstrap/js/bootstrap.min.js"></script>
 <body>
 <div id="wrapper">
@@ -64,7 +66,7 @@ if (isset($_POST["alterar"])) {
             ?>
             <div class="row">
                 <fieldset>
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" method="post" id="formEfetuarPagamento">
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-3 control-label text-right" for="total">Total:</label>
@@ -81,7 +83,7 @@ if (isset($_POST["alterar"])) {
                                 Pagamento</label>
 
                             <div class="col-md-4">
-                                <select id="tpPagamento " name="tpPagamento " class="form-control">
+                                <select id="tpPagamento" name="tpPagamento" class="form-control">
                                     <option value="0">Selecionar</option>
                                     <option value="1">Dinheiro</option>
                                     <option value="2">Cartão Credito</option>
@@ -103,7 +105,7 @@ if (isset($_POST["alterar"])) {
                             <label class="col-md-3 control-label"></label>
 
                             <div class="col-md-4">
-                                <button class="btn btn-success btn-block"><span class="glyphicon glyphicon-ok"></span>
+                                <button class="btn btn-success btn-block" id="receber" name="receber"><span class="glyphicon glyphicon-ok"></span>
                                     Receber
                                 </button>
                             </div>

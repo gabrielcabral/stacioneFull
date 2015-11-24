@@ -31,14 +31,21 @@ class ControlRelatorio extends ControlGeral
     {
 
         $objRel = new ModelRelatorio();
+        $arrdados['entrada'] = $this->dataAmericano($arrdados['entrada']);
+        $arrdados['saida'] = $this->dataAmericano($arrdados['saida']);
+
         $dados = $objRel->consultarDados($arrdados);
         $this->relatorio($dados, $arrdados);
     }
 
-    function relatorio($arrdados,$dados)
+    /**
+     * @param $arrdados
+     * @param $dados
+     */
+    function relatorio($arrdados, $dados)
     {
 
-        var_dump($arrdados);die();
+
         $pdf = new FPDF();
         $pdf->AddPage();
         $pdf->Image('../bootstrap/img/logo.JPG', 75, 10, -300);

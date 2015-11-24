@@ -18,11 +18,17 @@ if (isset($_POST["consultar"])) {
     $entrada = $ce->consultar();
 }
 $vagas = $ce->consultarVagas(1);
+
+
+
+
+
+
 ?>
 <html lang="pt-br">
 <head>
-    <link rel="icon" href="../bootstrap/img/logo.JPG" type="image/x-icon"/>
-    <link rel="shortcut icon" href="../bootstrap/img/logo.JPG" type="image/x-icon"/>
+    <link rel="icon" href="../bootstrap/img/logo.jpg" type="image/x-icon"/>
+    <link rel="shortcut icon" href="../bootstrap/img/logo.jpg" type="image/x-icon"/>
     <title>STACIONE</title>
     <!-- BOOTSTRAP STYLES-->
     <link href="../bootstrap/css/bootstrap.css" rel="stylesheet"/>
@@ -50,7 +56,7 @@ $vagas = $ce->consultarVagas(1);
     ?>
     <div id="page-wrapper">
         <div id="page-inner">
-            <div class="row">
+
                 <div class="jumbotron">
                     <fieldset>
                         <!-- Form Name -->
@@ -85,10 +91,10 @@ $vagas = $ce->consultarVagas(1);
                             </div>
                         </div>
                     </fieldset>
-                </div>
-            </div>
+
+
             <div class="row">
-                <div class="jumbotron">
+
                     <fieldset>
                         <form method="post" class="form-horizontal">
                             <legend>Consulta</legend>
@@ -116,7 +122,9 @@ $vagas = $ce->consultarVagas(1);
                                 <label class="col-md-2 control-label" for="nome"></label>
 
                                 <div class="col-md-4" style="text-align: right">
-                                    <button type="reset" class="btn btn-danger" name="consultar">Limpar</button>
+                                    <button type="reset" class="btn btn-danger" name="consultar"><span
+                                            class="glyphicon glyphicon-remove"></span>Limpar
+                                    </button>
                                     <button type="submit" class="btn btn-primary" id="consultar" name="consultar"><span
                                             class="glyphicon glyphicon-search"></span> Consultar
                                     </button>
@@ -124,8 +132,8 @@ $vagas = $ce->consultarVagas(1);
                             </div>
                         </form>
                     </fieldset>
-                </div>
-                <div class="jumbotron">
+
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="table-responsive">
@@ -161,7 +169,7 @@ $vagas = $ce->consultarVagas(1);
                             </div>
                         </div>
                     </div>
-                </div>
+
             </div>
             <?php
             // foreach para listar os dados do entrada
@@ -201,7 +209,7 @@ $vagas = $ce->consultarVagas(1);
                 </div>
             <?php } ?>
             <!-- /. ROW  -->
-        </div>
+
         <!-- /. PAGE INNER  -->
     </div>
     <!-- /. PAGE WRAPPER  -->

@@ -141,8 +141,10 @@ class ControlGeral
     }
 
 
-
-
+    /**
+     * @param $strValor
+     * @return mixed|string
+     */
     public function limpaCPF_CNPJ($strValor)
     {
         $strValor = trim($strValor);
@@ -170,10 +172,10 @@ class ControlGeral
                 <img src="../bootstrap/img/logo.JPG" class="user-image img-responsive"/>
             </li>
            <li>
-                <a class="active-menu"  href="modulo.php?modulo=principal"><i class="fa fa-dashboard fa-3x"></i> Inicio</a>
+                <a class="active-menu"  href="modulo.php?modulo=principal"><i class="fa fa-dashboard fa-2x"></i> Inicio</a>
             </li>
              <li>
-                <a href="#"><i class="fa fa-user fa-3x"></i> Funcionário<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-user fa-2x"></i> Funcionário<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="modulo.php?modulo=funcionario&menu=consultar">Consultar</a>
@@ -184,39 +186,43 @@ class ControlGeral
                 </ul>
             </li>
             <li>
-                 <a href="#"><i class="fa fa-car fa-3x"></i> Veículos<span class="fa arrow"></span></a>
+                 <a href="#"><i class="fa fa-car fa-2x"></i> Veículos<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="modulo.php?modulo=veiculo&menu=consultar">Consultar</a>
                     </li>
-                    <li>
+                   <!-- <li>
                         <a href="modulo.php?modulo=veiculo&menu=inserir">Inserir</a>
-                    </li>
+                    </li>-->
                 </ul>
             </li>
             <li>
-                <a  href="modulo.php?modulo=preco&menu=alterar"><i class="fa fa-usd fa-3x"></i>Tabela de Preços</a>
+                <a  href="modulo.php?modulo=preco&menu=alterar"><i class="fa fa-usd fa-2x"></i>Tabela de Preços</a>
             </li>
             <li>
-                <a  href="modulo.php?modulo=vaga&menu=alterar"><i class="fa fa-battery-full fa-3x"></i>Vagas</a>
+                <a  href="modulo.php?modulo=vaga&menu=alterar"><i class="fa fa-battery-full fa-2x"></i>Vagas</a>
             </li>
 
 
 
           <li  >
-                <a  href="modulo.php?modulo=relatorio&menu=consultar"><i class="fa fa-line-chart fa-3x"></i> Relatório</a>
+                <a  href="modulo.php?modulo=relatorio&menu=consultar"><i class="fa fa-line-chart fa-2x"></i> Relatório</a>
             </li>
            <li>
-                  <a class="menu"  href="modulo.php?modulo=funcionario&menu=alterarSenha"><i class="fa fa-bolt fa-3x"></i> Aletrar Senha</a>
+                  <a class="menu"  href="modulo.php?modulo=funcionario&menu=alterarSenha"><i class="fa fa-bolt fa-2x"></i> Aletrar Senha</a>
            </li>
 
             <li  >
-                <a  href="../logoff.php"><i class="fa fa-power-off fa-3x"></i> Sair</a>
+                <a  href="../logoff.php"><i class="fa fa-power-off fa-2x"></i> Sair</a>
             </li>
         </ul>
     </div>
 </nav>';
     }
+
+    /**
+     *
+     */
     function topo()
     {
         echo '<nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">

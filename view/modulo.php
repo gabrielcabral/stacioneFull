@@ -1,5 +1,5 @@
 <?php
-//error_reporting(~E_ALL & E_NOTICE & ~E_WARNING);
+error_reporting(~E_ALL & E_NOTICE & ~E_WARNING);
 // carrega as classes automaticamente
 require_once 'autoload.php';
 // verifica qual modulo e qual e qual menu é o escolhido

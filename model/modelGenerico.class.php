@@ -25,7 +25,10 @@ class Nomedaclasse extends modelConexao
         return $this->nome_atributo;
     }
 
-    public function setNome_atributo($nome_atributo) 
+    /**
+     * @param $nome_atributo
+     */
+    public function setNome_atributo($nome_atributo)
     {
         $this->nome_atributo = $nome_atributo;
     }

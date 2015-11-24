@@ -35,6 +35,11 @@ jQuery(
                 window.location.href = "modulo.php?modulo=funcionario&menu=alterar&id="+this.id;
             }
         );
+
+        $("#alterar").click( function () {
+
+            $('#formFuncAlt').submit();
+        });
         $("#alterarPasss").click(
             function () {
                 if($("#senha").val()!= '') {
@@ -68,6 +73,127 @@ jQuery(
             }
         );
 
+
+    $('#salvar').click(
+        function () {
+           var cpf = $("#cpf_funcionario").val();
+
+            var valida = validarCPF(cpf);
+
+            if(valida==false) {
+                $("add-alerts").hide();
+                $(document).trigger(
+                    "add-alerts", {
+                        message: "CPF Inválido!!",
+                        priority: "warning"
+                    }
+                );
+                return false;
+            }
+            if($('#nm_funcionario').val() !=""){
+                if($('#nm_funcionario').val().length <= 3 ){
+                    $(document).trigger(
+                        "add-alerts", [
+                            {
+                                'message': "O Nome tem que conter no minímo 3 caracteres",
+                                'priority': 'warning'
+                            }
+                        ]
+                    );
+                    return false;
+                }
+                if($('#nm_funcionario').val().length > 200 ){
+                    $(document).trigger(
+                        "add-alerts", [
+                            {
+                                'message': "O Nome tem que conter no máximo 200 caracteres",
+                                'priority': 'warning'
+                            }
+                        ]
+                    );
+                    return false;
+                }
+            }
+            if($("#dtNascimento").val()== '') {
+                $(document).trigger(
+                    "add-alerts", [
+                        {
+                            'message': "A Data de Nascimento é Campo Obrigatório",
+                            'priority': 'warning'
+                        }
+                    ]
+                );
+                return false;
+            }
+            if($("#login").val()== '') {
+                $(document).trigger(
+                    "add-alerts", [
+                        {
+                            'message': "A login é Campo Obrigatório",
+                            'priority': 'warning'
+                        }
+                    ]
+                );
+                return false;
+            }
+            if($("#nm_funcionario").val()== '') {
+                $(document).trigger(
+                    "add-alerts", [
+                        {
+                            'message': "O nome é Campo Obrigatório",
+                            'priority': 'warning'
+                        }
+                    ]
+                );
+                return false;
+            }
+            if($("#perfil").val()== '') {
+                $(document).trigger(
+                    "add-alerts", [
+                        {
+                            'message': "O perfil é Campo Obrigatório",
+                            'priority': 'warning'
+                        }
+                    ]
+                );
+                return false;
+            }
+
+            if($("#password").val()!= '') {
+                    if($("#password").val() === $("#confirmePassword").val()) {
+                        $('#formFunc').submit();
+                    }else{
+                        $(document).trigger(
+                            "add-alerts", [
+                                {
+                                    'message': "A senha estão diferentes",
+                                    'priority': 'warning'
+                                }
+                            ]
+                        );
+                        return false;
+                    }
+                }else{
+                    $(document).trigger(
+                        "add-alerts", [
+                            {
+                                'message': "A senha está em branco!",
+                                'priority': 'warning'
+                            }
+                        ]
+                    );
+                    return false;
+                }
+
+
+
+
+
+
+
+
+
+        });
 
 
 
@@ -136,13 +262,6 @@ jQuery(
                             "add-alerts", {
                                 message: "CPF Inválido!!",
                                 priority: "warning"
-                            }
-                        );
-                    }else{
-                        $(document).trigger(
-                            "add-alerts", {
-                                message: "CPF válido!!",
-                                priority: "success"
                             }
                         );
                     }

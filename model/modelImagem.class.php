@@ -4,6 +4,9 @@
 require_once '../model/modelConexao.class.php';
 
 
+/**
+ * Class ModelImagem
+ */
 class ModelImagem extends ModelConexao
 {
 
@@ -12,6 +15,9 @@ class ModelImagem extends ModelConexao
      */
 
     private $id_imagem;
+    /**
+     * @var
+     */
     private $imagem;
 
     /**

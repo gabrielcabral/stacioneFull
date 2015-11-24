@@ -15,12 +15,7 @@ require_once 'autoload.php';
 $cc = new ControlFuncionario();
 
 
-// verfica o o botão 'consultar' foi acionado
-if (isset($_POST["salvar"])) {
-    // passa os dados para inserir
-    ///   var_dump($_POST);
-    $cc->inserir($_POST);
-}
+
 ?>
 <html lang="pt-br">
 <head>
@@ -114,7 +109,7 @@ if (isset($_POST["salvar"])) {
 
                         <div class="col-md-5">
                             <div class="input-group date">
-                                <input type="text" class="form-control" id="dtNascimento" name="dtNascimento"
+                                <input type="text" class="form-control" id="dtNascimento"  name="dtNascimento"
                                        required="required"><span class="input-group-addon"><i
                                         class="glyphicon glyphicon-th"></i></span>
                             </div>
@@ -173,7 +168,7 @@ if (isset($_POST["salvar"])) {
                     <div class="form-group">
                         <div class="col-md-7" style="text-align: right">
                             <button class="btn btn-danger" type="reset">Limpar</button>
-                            <button id="salvar" name="salvar" type="submit" class="btn btn-primary"><span
+                            <button id="salvar" name="salvar" type="submit"  class="btn btn-primary"><span
                                     class="glyphicon glyphicon-ok"></span> Salvar
                             </button>
                         </div>
@@ -191,3 +186,10 @@ if (isset($_POST["salvar"])) {
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <!-- METISMENU SCRIPTS -->
     <script src="../bootstrap/js/jquery.metisMenu.js"></script>
+<?php    // verfica o o botão 'consultar' foi acionado
+    if (isset($_POST["salvar"])) {
+    // passa os dados para inserir
+    ///   var_dump($_POST);
+    $cc->inserir($_POST);
+    }
+?>

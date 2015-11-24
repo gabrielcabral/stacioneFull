@@ -16,9 +16,21 @@ class ModelConexao
      * Atributos da classe
      */
     private $host;
+    /**
+     * @var
+     */
     private $user;
+    /**
+     * @var
+     */
     private $senha;
+    /**
+     * @var
+     */
     private $dbase;
+    /**
+     * @var
+     */
     private $link;
 
     /**
@@ -29,47 +41,74 @@ class ModelConexao
         return $this->host;
     }
 
-    public function getUser() 
+    /**
+     * @return mixed
+     */
+    public function getUser()
     {
         return $this->user;
     }
 
-    public function getSenha() 
+    /**
+     * @return mixed
+     */
+    public function getSenha()
     {
         return $this->senha;
     }
 
-    public function getDbase() 
+    /**
+     * @return mixed
+     */
+    public function getDbase()
     {
         return $this->dbase;
     }
 
-    public function getLink() 
+    /**
+     * @return mixed
+     */
+    public function getLink()
     {
         return $this->link;
     }
 
-    public function setHost($host) 
+    /**
+     * @param $host
+     */
+    public function setHost($host)
     {
         $this->host = $host;
     }
 
-    public function setUser($user) 
+    /**
+     * @param $user
+     */
+    public function setUser($user)
     {
         $this->user = $user;
     }
 
-    public function setSenha($senha) 
+    /**
+     * @param $senha
+     */
+    public function setSenha($senha)
     {
         $this->senha = $senha;
     }
 
-    public function setDbase($dbase) 
+    /**
+     * @param $dbase
+     */
+    public function setDbase($dbase)
     {
         $this->dbase = $dbase;
     }
 
-    public function setLink($link) 
+    /**
+     * @param $link
+     */
+    public function setLink($link)
     {
         $this->link = $link;
     }

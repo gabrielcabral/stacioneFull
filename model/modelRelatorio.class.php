@@ -21,11 +21,29 @@ class ModelRelatorio extends ModelConexao
      */
 
     private $id_entrada_saida;
+    /**
+     * @var
+     */
     private $entrada;
+    /**
+     * @var
+     */
     private $saida;
+    /**
+     * @var
+     */
     private $id_funcionario;
+    /**
+     * @var
+     */
     private $id_veiculo;
+    /**
+     * @var
+     */
     private $id_imagem;
+    /**
+     * @var
+     */
     private $placa;
 
     /**
@@ -147,15 +165,15 @@ class ModelRelatorio extends ModelConexao
      * Método utilizado para consultar a entrada cadastrados
      * @access public 
      * @param array
-     * @return Array dados do pet
+     * @return Array
      */
     public function consultarDados($arrEntrada)
     {
 
         // setar os valores
-        $this->setPlaca($arrEntrada['placa']);
-        $this->setEntrada($arrEntrada['entrada']);
-
+        $this->setPlaca( $arrEntrada['placa']);
+        $this->setEntrada( $arrEntrada['entrada']);
+        $this->setSaida($arrEntrada['saida']);
         // montar a consultar (whre 1 serve para selecionar todos os registros)
         $sql = "SELECT
                     *
@@ -181,7 +199,7 @@ class ModelRelatorio extends ModelConexao
             $sql.= " and es.ENTRADA BETWEEN :entrada and :saida";
         }
 
-        $sql.= " and  es.SAIDA IS NULL ORDER By es.ENTRADA ASC ";
+        $sql.= " and  es.SAIDA IS NOT NULL ORDER By es.ENTRADA ASC ";
         // executa consulta e controi um array com o resultado da consulta
         try {
             $bd = $this->conectar();
@@ -197,7 +215,7 @@ class ModelRelatorio extends ModelConexao
             // verificar se foi passado algum valor de $id_funcionario
             if ($this->getEntrada() != null) {
                 $query->bindValue(':entrada', $this->getEntrada(), PDO::PARAM_STR);
-                $query->bindValue(':saida', $this->getEntrada(), PDO::PARAM_STR);
+                $query->bindValue(':saida', $this->getSaida(), PDO::PARAM_STR);
             }
             $query->execute();
 

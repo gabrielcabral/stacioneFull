@@ -120,7 +120,11 @@ class ControlEstaciona extends ControlGeral
         }
 
     }
-    function alterarPreco($arrVaga) 
+
+    /**
+     * @param $arrVaga
+     */
+    function alterarPreco($arrVaga)
     {
 
         $objEntrada = new ModelEstaciona();
@@ -184,9 +188,12 @@ class ControlEstaciona extends ControlGeral
      * @param String $telefone telefone do funcionario
      * @return Boolean retorna TRUE se os dados forem salvos com sucesso
      */
-    /*function inserirImagem($dadosFuncionario) {
+    function efetuarPagamento($arrPagamento) {
 
-        #invocar métódo  e passar parâmetros
+
+        $objEntrada = new ModelEstaciona();
+
+        /*invocar métódo  e passar parâmetros
         $objFuncionario = new ModelFuncionario();
 
         $tpPerfil= $dadosFuncionario['tpPerfil'];
@@ -204,73 +211,13 @@ class ControlEstaciona extends ControlGeral
             $_SESSION['msg'] = "Erro ao inserir!";
             #redirecionar
             header("location: ../view/modulo.php?modulo=funcionario&menu=consultar");
-        }
-    }*/
+        }*/
+    }
 
-    //
-    //    /**
-    //     * Método utilizado validar os dados dos funcionarios e invocar o método alterarFuncionario no model
-    //     * @access public
-    //     * @param Int $id id do funcionario
-    //     * @param String $nome nome do funcionario
-    //     * @param String $cpf CPF do funcionario
-    //     * @param String $dtNascimento data de nascimento do funcionario
-    //     * @param String $telefone telefone do funcionario
-    //     * @return Boolean retorna TRUE se os dados forem salvos com sucesso
-    //     */
-    //    function alterar($dadosFuncionario) {
-    //
-    //        #invocar métódo  e passar parâmetros
-    //        $objFuncionario = new ModelFuncionario();
-    //        $objCidade = new ModelCidade();
-    //
-    //        $dadosFuncionario['dtNascimento'] = $this->dataAmericano(str_replace("/","-",$dadosFuncionario['dtNascimento'] ));
-    //        if ($objFuncionario->alterarFuncionario($dadosFuncionario) == true) {
-    //            #se for alterado com sucesso mostrar a mensagem
-    //            $_SESSION['msg'] = "Alterado com sucesso!";
-    //            #redirecionar
-    //            header("location: ../view/modulo.php?modulo=funcionario&menu=consultar");
-    //        } else {
-    //            $_SESSION['msg'] = "Erro ao alterar!";
-    //            #redirecionar
-    //            header("location: ../view/modulo.php?modulo=funcionario&menu=consultar");
-    //        }
-    //    }
-    //
-    //    function alterarSenha($dadosSenha) {
-    //
-    //        #invocar métódo  e passar parâmetros
-    //        $objFuncionario = new ModelFuncionario();
-    //
-    //
-    //        $id_funcionario = $dadosSenha['id_funcionario'];
-    //        $senhaAntiga = sha1($dadosSenha['senhaAntiga']);
-    //        $senha = sha1($dadosSenha['senha']);
-    //        $validaSenha = $objFuncionario->verificaSenha($senhaAntiga,$id_funcionario);
-    //        if($validaSenha['existe']== 0){
-    //            $_SESSION['msg'] = "Senha Antiga Incorreta!";
-    //            return false;
-    //        }
-    //
-    //        if ($objFuncionario->alterarSenha($senha,$id_funcionario) == true) {
-    //            #se for alterado com sucesso mostrar a mensagem
-    //            $_SESSION['msg'] = "Alterado com sucesso!";
-    //            #redirecionar
-    //            header("location: ../view/modulo.php?modulo=principal");
-    //        } else {
-    //            $_SESSION['msg'] = "Erro ao alterar!";
-    //            #redirecionar
-    //            header("location: ../view/modulo.php?modulo=principal");
-    //        }
-    //    }
-    //
-    //    /**
-    //     * Método utilizado para validar os dados dos funcionarios e invocar o método excluirFuncionario no model
-    //     * @access public
-    //     * @param Int $id id do funcionario
-    //     * @return Boolean retorna TRUE se os dados for excluído sucesso
-    //     */
-    function delete($id) 
+    /**
+     * @param $id
+     */
+    function delete($id)
     {
 
         // invocar métódo  e passar parâmetros
@@ -290,7 +237,10 @@ class ControlEstaciona extends ControlGeral
     }
 
 
-    function saida($id) 
+    /**
+     * @param $id
+     */
+    function saida($id)
     {
 
         // invocar métódo  e passar parâmetros

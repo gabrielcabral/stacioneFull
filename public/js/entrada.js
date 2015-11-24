@@ -16,11 +16,7 @@ jQuery(
 
         $('.aparece').hide();
 
-        $('#placa').keyup(
-            function() {
-                $(this).val($(this).val().toUpperCase());
-            }
-        );
+
 
         //Configurando o arquivo que vai receber a imagem
         webcam.set_api_url('../upload.php');

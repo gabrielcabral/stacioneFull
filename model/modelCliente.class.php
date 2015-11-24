@@ -16,9 +16,21 @@ class ModelCliente extends ModelConexao
      * Atributos da classe
      */
     private $id;
+    /**
+     * @var
+     */
     private $nome;
+    /**
+     * @var
+     */
     private $cpf;
+    /**
+     * @var
+     */
     private $dtNascimento;
+    /**
+     * @var
+     */
     private $telefone;
 
     /**
@@ -29,47 +41,74 @@ class ModelCliente extends ModelConexao
         return $this->id;
     }
 
-    public function getNome() 
+    /**
+     * @return mixed
+     */
+    public function getNome()
     {
         return $this->nome;
     }
 
-    public function getCpf() 
+    /**
+     * @return mixed
+     */
+    public function getCpf()
     {
         return $this->cpf;
     }
 
-    public function getDtNascimento() 
+    /**
+     * @return mixed
+     */
+    public function getDtNascimento()
     {
         return $this->dtNascimento;
     }
 
-    public function getTelefone() 
+    /**
+     * @return mixed
+     */
+    public function getTelefone()
     {
         return $this->telefone;
     }
 
-    public function setId($id) 
+    /**
+     * @param $id
+     */
+    public function setId($id)
     {
         $this->id = $id;
     }
 
-    public function setNome($nome) 
+    /**
+     * @param $nome
+     */
+    public function setNome($nome)
     {
         $this->nome = $nome;
     }
 
-    public function setCpf($cpf) 
+    /**
+     * @param $cpf
+     */
+    public function setCpf($cpf)
     {
         $this->cpf = $cpf;
     }
 
-    public function setDtNascimento($dtNascimento) 
+    /**
+     * @param $dtNascimento
+     */
+    public function setDtNascimento($dtNascimento)
     {
         $this->dtNascimento = $dtNascimento;
     }
 
-    public function setTelefone($telefone) 
+    /**
+     * @param $telefone
+     */
+    public function setTelefone($telefone)
     {
         $this->telefone = $telefone;
     }

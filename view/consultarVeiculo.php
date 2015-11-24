@@ -18,7 +18,6 @@ $cv = new ControlVeiculo();
 #verfica o o botão 'consultar' foi acionado
 if (isset($_POST["consultar"])) {
     #passa o cpf e nome para consultar
-var_dump($_POST);
   $veiculos = $cv->consultar($_POST);
 } else {
     #mostrar todos os funcionarios
@@ -85,14 +84,14 @@ var_dump($_POST);
             }
 
             ?>
-            <div class="row">
+           <!-- <div class="row">
                 <div class="col-lg-12" style="text-align: right">
                     <button class="btn btn-success" id="btnNovoFuncionario"><span
                             class="glyphicon glyphicon-plus"></span> Novo Veículo
                     </button>
                 </div>
-                <!-- /.col-lg-6 -->
-            </div>
+
+            </div>-->
             <!-- /.row -->
 
 
@@ -163,7 +162,7 @@ var_dump($_POST);
                                     <th>Fabricante</th>
                                     <th>Veiculo</th>
 
-                                    <th>Alterar</th>
+                                   <!-- <th>Alterar</th>-->
                                     <th>Excluir</th>
                                     </thead>
                                     <tbody>
@@ -176,13 +175,13 @@ var_dump($_POST);
                                                 <td><?=$item['nome_fabricante'];?></td>
                                                 <td><?= $item['nome_veiculo'] ?></td>
 
-                                                                                               <td>
+                                                <!--                                        <td>
                                                     <p data-placement='top' data-toggle='tooltip' title='Alterar'>
-                                                        <button class='btn btn-warning btnAletrar ' data-title='Alterar'
-                                                                  id='<?= $item['id_veiculo'] ?>'>
+                                                       <button class='btn btn-warning btnAletrar ' data-title='Alterar'
+                                                                  id='<?/*= $item['id_veiculo'] */?>'>
                                                             <span class='glyphicon glyphicon-pencil'></span></button>
                                                     </p>
-                                                </td>
+                                                </td>-->
                                                 <td>
                                                     <p data-placement='top' data-toggle='tooltip' title='Excluir'>
                                                         <button class='btn btn-danger'

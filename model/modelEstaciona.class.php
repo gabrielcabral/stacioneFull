@@ -4,6 +4,9 @@
 require_once '../model/modelConexao.class.php';
 
 
+/**
+ * Class ModelEstaciona
+ */
 class ModelEstaciona extends ModelConexao
 {
 
@@ -12,11 +15,29 @@ class ModelEstaciona extends ModelConexao
      */
 
     private $id_entrada_saida;
+    /**
+     * @var
+     */
     private $entrada;
+    /**
+     * @var
+     */
     private $saida;
+    /**
+     * @var
+     */
     private $id_funcionario;
+    /**
+     * @var
+     */
     private $id_veiculo;
+    /**
+     * @var
+     */
     private $id_imagem;
+    /**
+     * @var
+     */
     private $placa;
 
     /**
@@ -441,6 +462,10 @@ class ModelEstaciona extends ModelConexao
         }
     }
 
+    /**
+     * @param $arrVaga
+     * @return bool
+     */
     public function alteraVaga($arrVaga)
     {
 
@@ -468,6 +493,10 @@ class ModelEstaciona extends ModelConexao
     }
 
 
+    /**
+     * @param $arrVaga
+     * @return bool
+     */
     public function alterarPreco($arrVaga)
     {
 
@@ -491,6 +520,10 @@ class ModelEstaciona extends ModelConexao
         }
     }
 
+    /**
+     * @param $id
+     * @return bool
+     */
     public function saida($id)
     {
         $this->setIdFuncionario($_SESSION['UsuarioID']);

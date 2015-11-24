@@ -4,6 +4,9 @@
 require_once '../model/modelConexao.class.php';
 
 
+/**
+ * Class ModelFuncionario
+ */
 class ModelFuncionario extends ModelConexao
 {
 
@@ -11,13 +14,37 @@ class ModelFuncionario extends ModelConexao
      * Atributos da classe
      */
     private $id_funcionario;
+    /**
+     * @var
+     */
     private $nm_funcionario;
+    /**
+     * @var
+     */
     private $cpf_funcionario;
+    /**
+     * @var
+     */
     private $rg_funcionario;
+    /**
+     * @var
+     */
     private $dt_nascimento;
+    /**
+     * @var
+     */
     private $login;
+    /**
+     * @var
+     */
     private $senha;
+    /**
+     * @var
+     */
     private $telefone;
+    /**
+     * @var
+     */
     private $id_perfil;
 
     /**
@@ -313,29 +340,25 @@ class ModelFuncionario extends ModelConexao
      */
     public function alterarfuncionario($arrFuncionario) 
     {
-
+    var_dump($arrFuncionario);
         // setar os dados
         $this->setIdFuncionario($arrFuncionario['id_funcionario']);
-        $this->setNmFuncionario($arrFuncionario['nome_funcionario']);
+        $this->setNmFuncionario($arrFuncionario['nm_funcionario']);
         $this->setCpfFuncionario($arrFuncionario['cpf_funcionario']);
         $this->setRgFuncionario($arrFuncionario['rg_funcionario']);
         $this->setDtNascimento($arrFuncionario['dtNascimento']);
-        $this->setIdPerfil($arrFuncionario['id_perfil']);
-        $this->setLogin($arrFuncionario['login']);
-        $this->setSenha($arrFuncionario['senha']);
-        $this->setTelefone($arrFuncionario['telefone']);
+        $this->setIdPerfil($arrFuncionario['perfil']);
+         $this->setTelefone($arrFuncionario['telefone']);
 
         // montar a consulta
         $sql = "UPDATE tb_funcionario
                 SET
-                 ID_PERFIL = : ID_PERFIL,
-                 NM_FUNCIONARIO = : NM_FUNCIONARIO,
-                 CPF_FUNCIONARIO = : CPF_FUNCIONARIO,
-                 RG_FUNCIONARIO = : RG_FUNCIONARIO,
-                 DT_NASCIMENTO = : DT_NASCIMENTO,
-                 LOGIN = : LOGIN,
-                 SENHA = : SENHA,
-                 TELEFONE = : TELEFONE
+                 ID_PERFIL = :ID_PERFIL,
+                 NM_FUNCIONARIO = :NM_FUNCIONARIO,
+                 CPF_FUNCIONARIO = :CPF_FUNCIONARIO,
+                 RG_FUNCIONARIO = :RG_FUNCIONARIO,
+                 DT_NASCIMENTO = :DT_NASCIMENTO,
+                 TELEFONE = :TELEFONE
                 WHERE
                     ID_FUNCIONARIO = :ID_FUNCIONARIO";
 
@@ -348,8 +371,6 @@ class ModelFuncionario extends ModelConexao
             $query->bindValue(':CPF_FUNCIONARIO', $this->getCpfFuncionario(), PDO::PARAM_STR);
             $query->bindValue(':RG_FUNCIONARIO', $this->getRgFuncionario(), PDO::PARAM_STR);
             $query->bindValue(':DT_NASCIMENTO', $this->getDtNascimento(), PDO::PARAM_STR);
-            $query->bindValue(':LOGIN', $this->getLogin(), PDO::PARAM_STR);
-            $query->bindValue(':SENHA', $this->getSenha(), PDO::PARAM_STR);
             $query->bindValue(':TELEFONE', $this->getTelefone(), PDO::PARAM_STR);
             $query->bindValue(':ID_FUNCIONARIO', $this->getIdFuncionario(), PDO::PARAM_INT);
             $query->execute();

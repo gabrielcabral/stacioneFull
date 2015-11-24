@@ -4,6 +4,9 @@
 require_once '../model/modelConexao.class.php';
 
 
+/**
+ * Class ModelVeiculo
+ */
 class ModelVeiculo extends ModelConexao
 {
 
@@ -11,8 +14,17 @@ class ModelVeiculo extends ModelConexao
      * Atributos da classe
      */
     private $id_veiculo;
+    /**
+     * @var
+     */
     private $id_fabricante;
+    /**
+     * @var
+     */
     private $nome_veiculo;
+    /**
+     * @var
+     */
     private $tipo_veiculo;
 
 
