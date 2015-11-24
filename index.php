@@ -1,6 +1,30 @@
-<script src="bootstrap/js/bootstrap.min.js" ></script>
-<link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
-<link rel="stylesheet" href="bootstrap/css/font-awesome.min.css" />
+<head>
+    <link rel="icon" href="bootstrap/img/logo.JPG" type="image/x-icon"/>
+    <link rel="shortcut icon" href="bootstrap/img/logo.JPG" type="image/x-icon"/>
+    <title>STACIONE</title>
+    <!-- BOOTSTRAP STYLES-->
+    <script src="bootstrap/js/jquery-2.1.4.js"></script>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet"/>
+    <!-- FONTAWESOME STYLES-->
+    <link href="bootstrap/css/font-awesome.css" rel="stylesheet"/>
+    <!-- MORRIS CHART STYLES-->
+    <link href="bootstrap/js/morris/morris-0.4.3.min.css" rel="stylesheet"/>
+    <!-- CUSTOM STYLES-->
+    <link href="bootstrap/css/custom.css" rel="stylesheet"/>
+    <script src="bootstrap/js/jquery.maskedinput.js"></script>
+    <script src="bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="bootstrap/js/jquery.validate.js"></script>
+    <script src="bootstrap/js/prettify.js"></script>
+    <script src="bootstrap/js/jquery.bsAlerts.js"></script>
+    <script src="bootstrap/js/bootstrap-confirmation.js"></script>
+    <script src="bootstrap/js/bootstrap-datepicker.js" type="text/javascript"></script>
+    <script src="bootstrap/js/bootstrap-datepicker.pt-BR.min.js" type="text/javascript"></script>
+    <script src="public/js/login.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+</head>
+
+
 <body style="background-color: #c3c3c3" >
 <div class="container"  >
     <div class="row text-center ">
@@ -20,7 +44,8 @@
                     <strong>   Entre com seu login</strong>
                 </div>
                 <div class="panel-body">
-                    <form role="form" action="autenticacao.php" method="POST">
+                    <div data-alerts="alerts" data-fade="3000"></div>
+                    <form role="form" action="autenticacao.php" method="POST" id="formLogin">
                         <br />
                         <div class="form-group input-group">
                             <span class="input-group-addon"><i class="fa fa-tag"  ></i></span>
@@ -39,7 +64,7 @@
 <!--                                            </span>-->
                         </div>
 
-                        <button class="btn btn-primary btn-lg" type="submit" id="login" ><span class="glyphicon glyphicon-arrow-right"></span> Entrar</button>
+                        <button class="btn btn-primary btn-lg" type="button"  id="entrar" ><span class="glyphicon glyphicon-arrow-right"></span> Entrar</button>
                         <hr />
                         <!--                                    Not register ? <a href="registeration.php" >click here </a>-->
                     </form>

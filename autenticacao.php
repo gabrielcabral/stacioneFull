@@ -2,10 +2,10 @@
 
 require_once 'conectar.php';
 // Verifica se houve POST e se o usuário ou a senha é(são) vazio(s)
-if (!empty($_POST) AND ( empty($_POST['login']) OR empty($_POST['senha']))) {
+/*if (!empty($_POST) AND ( empty($_POST['login']) OR empty($_POST['senha']))) {
     header("Location:index.php");
     exit;
-}
+}*/
 
 $usuario = mysql_real_escape_string($_POST['login']);
 $senha = mysql_real_escape_string($_POST['senha']);
@@ -16,8 +16,16 @@ $query = mysql_query($sql);
 
 if (@mysql_num_rows($query) != 1) {
     // Mensagem de erro quando os dados são inválidos e/ou o usuário não foi encontrado
-    echo "<script> alert ('Login Inválido')</script>";
-    echo "<script> location.href= ('index.php')</script>";
+    echo "<script>
+            if($('#login').val()==''){
+                    $(document).trigger(\"add-alerts\", [
+                    {
+                        'message': \"Campos obrigatórios não informados!\",
+                        'priority': 'danger'
+                    }
+                ])
+</script>";
+   // echo "<script> location.href= ('index.php')</script>";
     exit;
 } else {
     // Salva os dados encontados na variável $resultado

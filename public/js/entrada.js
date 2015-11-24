@@ -83,38 +83,18 @@ jQuery(
 
         $("#salvar").click(
             function() {
-                if($('#placa').val() == '') {
+                if($('#placa').val() == '' || $('#nome_fabricante').val() == '' || $('#veiculo').val() == 0) {
                     $(document).trigger(
                         "add-alerts", {
-                            message: "Campo placa Obrigatório!",
+                            message: "Campos obrigatórios não informados! ",
                             priority: "error"
                         }
                     );
                     $("#alerts").hide(5000);
-                    //$('#placa').onfocus();
+
                     return false;
                 }
-                if($('#nome_fabricante').val() == '') {
-                    $(document).trigger(
-                        "add-alerts", {
-                            message: "Campo fabricante Obrigatório!",
-                            priority: "error"
-                        }
-                    );
-                    $("#alerts").hide(5000);
-                    return false;
-                }
-                if($('#veiculo').val() == 0) {
-                    $(document).trigger(
-                        "add-alerts", {
-                            message: "Campo veículo Obrigatório!",
-                            priority: "error"
-                        }
-                    );
-                    $("#alerts").hide(5000);
-                    //$('#veiculo').onfocus();
-                    return false;
-                }
+
 
                 $("#formEntrada").submit();
 

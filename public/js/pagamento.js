@@ -44,7 +44,7 @@ jQuery(
         }
 
 
-        $('#recebido').bind('keypress',mask.money)
+
 
        $('#tpPagamento').change(function(){
 
@@ -53,11 +53,56 @@ jQuery(
 
            if(tipo != 0){
                $('#recebido').val(total);
+               $('#troco').val('0,00');
+
            }
 
        });
+        $('#recebido').bind('keypress',mask.money);
+        $('#recebido').keydown  (function(){
+
+
+            var total =   formatReal($('#total').val()+"00").replace(',','');
+            var recebido = $('#recebido').val().replace(',','');
+
+
+            var darTroco = recebido - total;
+
+
+            $('#troco').val(  formatReal(darTroco));
+        });
+
+        $('#receber').click(function(){
+            $('#formEfetuarPagamento').submit();
+            if ($('#tpPagamento').val() == 0){
+                $(document).trigger("add-alerts", [
+                    {
+                        'message': "Selecione um tipo de pagamento!",
+                        'priority': 'danger'
+                    }
+                ]);
+                return false;
+            }
 
 
 
+
+            var total =   formatReal($('#total').val()+"00").replace(',','');
+            var recebido = $('#recebido').val().replace(',','');
+
+            if(recebido >= total){
+              //  $('#formEfetuarPagamento').submit();
+            }else {
+                $(document).trigger("add-alerts", [
+                    {
+                        'message': "O valor recebido é menor do que o total a ser pago!",
+                        'priority': 'danger'
+                    }
+                ]);
+                //return false;
+            }
+
+            $('#formEfetuarPagamento').submit();
+        });
     }
 );

@@ -167,7 +167,7 @@ class ControlEstaciona extends ControlGeral
         // se for válido invocar o método de iserir
         if ($objEntrada->inserirEntrada($dadosEntrada) == true) {
             // se for inserido com sucesso mostrar a mensagem
-            $_SESSION['msg'] = "Inserido com sucesso!";
+            $_SESSION['msg'] = "Registrado com sucesso! ";
             $_SESSION['tipoMsg'] = 2;
             // redirecionar
             header("location: ../view/modulo.php?modulo.php?modulo=principal");
@@ -191,18 +191,13 @@ class ControlEstaciona extends ControlGeral
     function efetuarPagamento($arrPagamento) {
 
 
+
+
+        //invocar métódo  e passar parâmetros
         $objEntrada = new ModelEstaciona();
 
-        /*invocar métódo  e passar parâmetros
-        $objFuncionario = new ModelFuncionario();
-
-        $tpPerfil= $dadosFuncionario['tpPerfil'];
-        #tratar a data de nascimento
-        $dtNascimento = $this->dataAmericano(str_replace("/","-",$dtNascimento));
-
-
         #se for válido invocar o método de iserir
-        if ($objFuncionario->inserirFuncionario($nome, $cpf, $dtNascimento, $telefone,$senha,$tpPerfil,$id_cidade) == true) {
+        if ($objEntrada->inserirPagamento($arrPagamento) == true) {
             #se for inserido com sucesso mostrar a mensagem
             $_SESSION['msg'] = "Inserido com sucesso!";
             #redirecionar
@@ -211,7 +206,7 @@ class ControlEstaciona extends ControlGeral
             $_SESSION['msg'] = "Erro ao inserir!";
             #redirecionar
             header("location: ../view/modulo.php?modulo=funcionario&menu=consultar");
-        }*/
+        }
     }
 
     /**

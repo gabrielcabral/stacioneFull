@@ -21,10 +21,11 @@ $to = ($segunto1 - $segunto2);
 #converter o tempo em minutos
 $mins = round(($to / 60));
 $total = $mins * $preco['PRECO_MINUTO'];
+
+
 if (isset($_POST["receber"])) {
     #passa os dados para inserir
-
-    var_dump($_POST);die();
+    var_dump($_POST);
     $ce->efetuarPagamento($_POST);
 }
 ?>
@@ -43,6 +44,7 @@ if (isset($_POST["receber"])) {
     <script src="../bootstrap/js/jquery.mask.js"></script>
     <script src="../bootstrap/js/jquery.maskMoney.js"></script>
     <script src="../bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="../bootstrap/js/jquery.bsAlerts.js"></script>
     <script src="../bootstrap/js/bootstrap-confirmation.js"></script>
     <script type="text/javascript" src="../public/js/pagamento.js"></script>
     <script src="../bootstrap/js/bootstrap.min.js"></script>
@@ -64,6 +66,7 @@ if (isset($_POST["receber"])) {
                 $ce->alertaSuccess($_SESSION['msg']);
             }
             ?>
+            <div data-alerts="alerts" data-fade="3000"></div>
             <div class="row">
                 <fieldset>
                     <form class="form-horizontal" method="post" id="formEfetuarPagamento">
@@ -100,13 +103,27 @@ if (isset($_POST["receber"])) {
                                        class="form-control input-md">
                             </div>
                         </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="troco">Troco</label>
+
+                            <div class="col-md-4">
+                                <input name="troco" id="troco" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </div>
+                        </div>
+
+                        <input id="ID_ENTRADA_SAIDA" name="ID_ENTRADA_SAIDA" value="<?=$dadosEntrada['ID_ENTRADA_SAIDA']?>" type="hidden"/>
+
+
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-3 control-label"></label>
 
                             <div class="col-md-4">
-                                <button class="btn btn-success btn-block" id="receber" name="receber"><span class="glyphicon glyphicon-ok"></span>
-                                    Receber
+                                <button class="btn btn-success btn-block" type="submit" id="receber" name="receber"><span class="glyphicon glyphicon-ok"></span>
+                                    Registrar Pagamento
                                 </button>
                             </div>
                         </div>

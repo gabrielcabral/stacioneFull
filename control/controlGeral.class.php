@@ -70,7 +70,7 @@ class ControlGeral
     {
         $alerta = '';
         if (!empty($msg)) {
-            $alerta = '<div class="alert alert-info">';
+            $alerta = '<div class="alert alert-info"  data-fade="3000">';
             $alerta.='<button type="button" class="close" data-dismiss="alert">×</button>';
             $alerta.='<strong>Informação: </strong>' . $msg . '</div>';
             echo $alerta;
@@ -87,7 +87,7 @@ class ControlGeral
     {
         $alerta = '';
         if (!empty($msg)) {
-            $alerta = '<div class="alert alert-danger">';
+            $alerta = '<div class="alert alert-danger"  data-fade="3000">';
             $alerta.='<button type="button" class="close" data-dismiss="alert">×</button>';
             $alerta.='<strong>Informação: </strong>' . $msg . '</div>';
             echo $alerta;
@@ -104,8 +104,8 @@ class ControlGeral
     {
         $alerta = '';
         if (!empty($msg)) {
-            $alerta = '<div class="alert alert-success">';
-            $alerta.='<button type="button" class="close" data-dismiss="alert">×</button>';
+            $alerta = '<div class="alert alert-success"  data-fade="3000">';
+            $alerta.='<button type="button" class="close" data-dismiss="alert" >×</button>';
             $alerta.='<strong>Informação: </strong>' . $msg . '</div>';
             echo $alerta;
         }

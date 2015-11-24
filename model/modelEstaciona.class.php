@@ -550,4 +550,43 @@ class ModelEstaciona extends ModelConexao
         }
     }
 
+
+    /**
+     * @param $arrPagamento
+     * @return bool
+     */
+    public function inserirPagamento($arrPagamento)
+    {
+        $this->setIdFuncionario($_SESSION['UsuarioID']);
+        $this->setIdEntradaSaida($arrPagamento['ID_ENTRADA_SAIDA']);
+        // montar a consulta
+        $sql = "INSERT INTO tb_pagamento
+                (VL_APAGAR,
+                VL_PAGO,
+                VL_TROCO,
+                DT_PAGAMENTO,
+                ID_ENTRADA_SAIDA,
+                ID_FUNCIONARIO)
+                VALUES
+                (:VL_APAGAR,
+                :VL_PAGO,
+                :VL_TROCO,
+                CURRENT_TIMESTAMP(),
+                :ID_ENTRADA_SAIDA,
+                :ID_FUNCIONARIO)";
+
+        // realizar a blidagem dos dados
+        try {
+            $bd = $this->conectar();
+            $query = $bd->prepare($sql);
+            $query->bindValue(':id_funcionario', $this->getIdFuncionario(), PDO::PARAM_STR);
+            $query->bindValue(':id', $this->getIdEntradaSaida(), PDO::PARAM_STR);
+            $query->execute();
+            return true;
+        } catch (PDOException $e) {
+            $e->getMessage();
+            return false;
+        }
+    }
+
 }

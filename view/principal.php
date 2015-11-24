@@ -79,7 +79,7 @@ $vagas = $ce->consultarVagas(1);
                                 <div class="col-md-2">
                                     <button class="btn btn-success btn-lg btn-block" id="btnentrada" name="btnentrada"
                                             style=" margin-left: 31px;margin-bottom: 10px;"><span
-                                            class="glyphicon glyphicon-ok-sign"></span> Entrada
+                                            class="fa fa-car fa-2x"></span> Registrar Entrada
                                     </button>
                                 </div>
                             </div>
@@ -158,8 +158,8 @@ $vagas = $ce->consultarVagas(1);
                                         echo "<td><button class='btn btn-info' id='" . $item['ID_ENTRADA_SAIDA'] . "' data-toggle='modal' data-target='#modal_" . $item['ID_ENTRADA_SAIDA'] . "'  ><span class='glyphicon glyphicon-th-list'></span> Detelhes</button></td>";
                                         echo " <td  data-placement='top' data-toggle='tooltip' title='Excluir'>
                                                         <button class='btn btn-success'
-                                                                 data-href='saida.php?id=" . $item['ID_ENTRADA_SAIDA'] . "' data-toggle='confirmation' data-placement='right'  title='Dar a Saida'>
-                                                            <span class='fa fa-sign-out'></span>  Dar Saída</button>
+                                                                 data-href='saida.php?id=" . $item['ID_ENTRADA_SAIDA'] . "' data-toggle='confirmation' data-placement='right'  title='Registrar Saída'>
+                                                            <span class='fa fa-sign-out'></span>  Registrar Saída</button>
                                                    </td>";
                                         echo "</tr>";
 
