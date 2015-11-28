@@ -1,32 +1,27 @@
 ﻿<?php
 // iniciar_sessao
 session_start();
-
 // carregar as classes dinamicamente
 require_once 'autoload.php';
-
 // função para resolver problema de header
 ob_start();
-
 // define codificação
 header('Content-Type: text/html; charset=UTF-8');
 
-
 /**
- * Criado em 01/01/2015
- * Classe de controle do funcionario
- * @author Sérgio Lima (professor.sergiolima@gmail.com)
+ * Criado em 18/11/2015
+ * Classe de controle de entrada e saida de veiculos
+ * @author gabriel cabral de almeida
  * @version 1.0.0
  */
 class ControlEstaciona extends ControlGeral
 {
 
     /**
-     * Método utilizado para validar os dados dos funcionarios cadastrados e invocar o método consultarFuncionario no model
+     * Método utilizado para validar os dados cadastrados e invocar o método consultar no model
      * @access public 
-     * @param Int    $id   id do funcionario
-     * @param String $nome nome do funcionario
-     * @return Array dados do funcionario
+     * @array arrEntrada
+     * @return Array dados de entrada de veiculo
      */
     function consultar($arrEntrada = null) 
     {
@@ -37,74 +32,56 @@ class ControlEstaciona extends ControlGeral
         return $listaEntrada = $objEntrada->consultar($arrEntrada);
     }
     /**
-     * Método utilizado para validar os dados dos funcionarios cadastrados e invocar o método consultarFuncionario no model
+     * Método utilizado para validar os dados cadastrados e invocar o método consultarParaPagamento no model
      * @access public
-     * @param Int    $id   id do funcionario
-     * @param String $nome nome do funcionario
-     * @return Array dados do funcionario
+     * @array arrEntrada
+     * @return Array
      */
     function consultarParaPagamento($arrEntrada = null) 
     {
-
         $objEntrada = new ModelEstaciona();
         return $listaEntrada = $objEntrada->consultarParaPagamento($arrEntrada);
     }
-
     /**
-     * Método utilizado para validar os dados dos funcionarios cadastrados e invocar o método consultarFuncionario no model
+     * Método utilizado para validar os dados cadastrados e invocar o método consultarVeiculo no model
      * @access public
-     * @param Int    $id   id do funcionario
-     * @param String $nome nome do funcionario
-     * @return Array dados do funcionario
+     * @return Array
      */
     function consultarVeiculos() 
     {
-
         $objveiculo = new ModelEstaciona();
         return $listaEntrada = $objveiculo->consultarVeiculo();
     }
-
     /**
-     * Método utilizado para validar os dados dos funcionarios cadastrados e invocar o método consultarFuncionario no model
+     * Método utilizado para validar os dados cadastrados e invocar o método consultarVagas no model
      * @access public
-     * @param Int    $id   id do funcionario
-     * @param String $nome nome do funcionario
-     * @return Array dados do funcionario
+     * @return Array
      */
     function consultarVagas() 
     {
-
         $objveiculo = new ModelEstaciona();
         return $listaEntrada = $objveiculo->consultarVagas();
-
     }
     /**
-     * Método utilizado para validar os dados dos funcionarios cadastrados e invocar o método consultarFuncionario no model
+     * Método utilizado para validar os dados cadastrados e invocar o método consultarPreco no model
      * @access public
-     * @param Int    $id   id do funcionario
-     * @param String $nome nome do funcionario
-     * @return Array dados do funcionario
+     * @return Array
      */
     function consultarPreco() 
     {
-
         $objEstaciona = new ModelEstaciona();
         return $listaEntrada = $objEstaciona->consultarPreco();
-
     }
 
     /**
-     * Método utilizado para validar os dados dos funcionarios cadastrados e invocar o método consultarFuncionario no model
+     * Método utilizado para validar os dados cadastrados e invocar o método alteraVaga no model
+     * @param $arrVaga
      * @access public
-     * @param Int    $id   id do funcionario
-     * @param String $nome nome do funcionario
-     * @return Array dados do funcionario
+     * @return Array
      */
     function alterarVaga($arrVaga) 
     {
-
         $objEntrada = new ModelEstaciona();
-
         // se for válido invocar o método de iserir
         if ($objEntrada->alteraVaga($arrVaga) == true) {
             // se for inserido com sucesso mostrar a mensagem
@@ -118,19 +95,19 @@ class ControlEstaciona extends ControlGeral
             // redirecionar
             header("location: ../view/modulo.php?modulo=vaga&menu=alterar");
         }
-
     }
 
     /**
-     * @param $arrVaga
+     * Método utilizado para validar os dados cadastrados e invocar o método alteraVaga no model
+     * @param $arrPreco
+     * @access public
+     * @return Array
      */
-    function alterarPreco($arrVaga)
+    function alterarPreco($arrPreco)
     {
-
         $objEntrada = new ModelEstaciona();
-
         // se for válido invocar o método de iserir
-        if ($objEntrada->alterarPreco($arrVaga) == true) {
+        if ($objEntrada->alterarPreco($arrPreco) == true) {
             // se for inserido com sucesso mostrar a mensagem
             $_SESSION['msg'] = "Alterado com sucesso!";
             $_SESSION['tipoMsg'] = 2;
@@ -142,18 +119,11 @@ class ControlEstaciona extends ControlGeral
             // redirecionar
             header("location: ../view/modulo.php?modulo=preco&menu=alterar");
         }
-
     }
-
-
-
     /**
-     * Método utilizado validar os dados dos funcionarios cadastrados e invocar o método inserirFuncionario no model
+     * Método utilizado validar os dados  cadastrados e invocar o método inserirEntrada no model
      * @access public
-     * @param String $nome         nome do funcionario
-     * @param String $cpf          CPF do funcionario
-     * @param String $dtNascimento data de nascimento do funcionario
-     * @param String $telefone     telefone do funcionario
+     * @param Array $dadosEntrada
      * @return Boolean retorna TRUE se os dados forem salvos com sucesso
      */
     function inserir($dadosEntrada) 
@@ -180,22 +150,14 @@ class ControlEstaciona extends ControlGeral
     }
 
     /**
-     * Método utilizado validar os dados dos funcionarios cadastrados e invocar o método inserirFuncionario no model
+     * Método utilizado validar os dados  cadastrados e invocar o método inserirPagamento no model
      * @access public
-     * @param String $nome nome do funcionario
-     * @param String $cpf CPF do funcionario
-     * @param String $dtNascimento data de nascimento do funcionario
-     * @param String $telefone telefone do funcionario
+     * @param Array $arrPagamento
      * @return Boolean retorna TRUE se os dados forem salvos com sucesso
      */
     function efetuarPagamento($arrPagamento) {
-
-
-
-
         //invocar métódo  e passar parâmetros
         $objEntrada = new ModelEstaciona();
-
         #se for válido invocar o método de iserir
         if ($objEntrada->inserirPagamento($arrPagamento) == true) {
             #se for inserido com sucesso mostrar a mensagem
@@ -210,14 +172,15 @@ class ControlEstaciona extends ControlGeral
     }
 
     /**
+     * Método utilizado para invocar o método excluirFuncionario no model
+     * @access public
      * @param $id
+     * @return Boolean retorna TRUE se os dados forem salvos com sucesso
      */
     function delete($id)
     {
-
         // invocar métódo  e passar parâmetros
         $objFuncionario = new ModelFuncionario();
-
         // invocar métódo  e passar parâmetros
         if ($objFuncionario->excluirFuncionario($id) == true) {
             // se for excluído com sucesso mostrar a mensagem e redirecionar
@@ -230,18 +193,15 @@ class ControlEstaciona extends ControlGeral
             header("location: ../view/modulo.php?modulo=funcionario&menu=consultar");
         }
     }
-
-
     /**
+     * Método utilizado para invocar o método saida no model
+     * @access public
      * @param $id
+     * @return Boolean retorna TRUE se os dados forem salvos com sucesso
      */
     function saida($id)
     {
-
-        // invocar métódo  e passar parâmetros
         $objsaida = new ModelEstaciona();
-
-        // invocar métódo  e passar parâmetros
         if ($objsaida->saida($id) == true) {
             // se for excluído com sucesso mostrar a mensagem e redirecionar
             $_SESSION['msg'] = "Saida efetuada com sucesso!";

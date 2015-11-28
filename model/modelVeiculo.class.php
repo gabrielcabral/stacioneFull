@@ -5,7 +5,10 @@ require_once '../model/modelConexao.class.php';
 
 
 /**
- * Class ModelVeiculo
+ * Criado em 01/08/2015
+ * Classe de conexão com PDO/MySQL
+ * @author gabriel cabral de almeida
+ * @version 1.0.0
  */
 class ModelVeiculo extends ModelConexao
 {
@@ -134,7 +137,7 @@ class ModelVeiculo extends ModelConexao
     }
 
     /**
-     * Método utilizado para consultar os funcionarios cadastrados
+     * Método utilizado para consultar os Veiculo cadastrados
      * @access public 
      * @param Int    $id   id do funcionario
      * @param String $nome nome do funcionario
@@ -196,7 +199,7 @@ class ModelVeiculo extends ModelConexao
 
 
     /**
-     * Método utilizado para consultar os funcionarios cadastrados
+     * Método utilizado para consultar os Veiculo cadastrados
      * @access public
      * @param Int    $id   id do funcionario
      * @param String $nome nome do funcionario
@@ -231,7 +234,7 @@ class ModelVeiculo extends ModelConexao
         return $this->resultado;
     }
     /**
-     * Método utilizado para consultar os funcionarios cadastrados
+     * Método utilizado para consultar os Veiculo cadastrados
      * @access public
      * @param Int    $id   id do funcionario
      * @param String $nome nome do funcionario

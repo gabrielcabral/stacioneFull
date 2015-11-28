@@ -13,35 +13,32 @@ header('Content-Type: text/html; charset=UTF-8');
 
 /**
  * Criado em 01/01/2015
- * Classe de controle do funcionario
- * @author Sérgio Lima (professor.sergiolima@gmail.com)
+ * Classe de controle de imagem
  * @version 1.0.0
  */
 class ControlImagem extends ControlGeral
 {
 
     /**
-     * Método utilizado para validar os dados dos funcionarios cadastrados e invocar o método consultarFuncionario no model
-     * @access public 
-     * @param Int    $id   id do funcionario
-     * @param String $nome nome do funcionario
-     * @return Array dados do funcionario
+     * Método utilizado para validar os dados cadastrados e invocar o método consultar no model
+     * @access public
+     * @return Array dados da imagem
      */
-    function consultar() 
+    function consultar()
     {
 
         $objImagem = new ModelImagem();
         return $listaImagem = $objImagem->consultar();
     }
 
-    
+
     /**
-     * Método utilizado para chamar a funçãi
+     * Método utilizado para e invocar o método inserirImagem no model
      * @access public
-     * @param String $Imagem
+     * @param String $strImagem
      * @return Boolean retorna TRUE se os dados forem salvos com sucesso
      */
-    function inserirImagem($strImagem) 
+    function inserirImagem($strImagem)
     {
 
         // invocar métódo  e passar parâmetros

@@ -95,18 +95,20 @@ class ControlFuncionario extends ControlGeral
         }
 
     /**
-     * @param $dadosSenha
-     * @return bool
+     * Método utilizado validar os dados dos funcionarios e invocar o método verificaSenha no model
+     * @access public
+     * @param Int $id_funcionario id do funcionario
+     * @param String $senhaAntiga senhaantifga
+     * @param String $senha senhanova
+     * @return Boolean retorna TRUE se os dados forem salvos com sucesso
      */
     function alterarSenha($dadosSenha) {
 
             #invocar métódo  e passar parâmetros
             $objFuncionario = new ModelFuncionario();
-
-
             $id_funcionario = $dadosSenha['id_funcionario'];
-            $senhaAntiga = sha1($dadosSenha['senhaAntiga']);
-            $senha = sha1($dadosSenha['senha']);
+            $senhaAntiga = md5 ($dadosSenha['senhaAntiga']);
+            $senha = md5 ($dadosSenha['senha']);
             $validaSenha = $objFuncionario->verificaSenha($senhaAntiga,$id_funcionario);
             if($validaSenha['existe']== 0){
                 $_SESSION['msg'] = "Senha Antiga Incorreta!";

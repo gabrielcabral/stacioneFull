@@ -13,16 +13,16 @@ ob_start();
 header('Content-Type: text/html; charset=UTF-8');
 
 /**
- * Criado em 01/01/2015
+ * Criado em 11/10/2015
  * Classe de relatorio
- * @author Sérgio Lima (professor.sergiolima@gmail.com)
+ * @author Sérgio Lima (professor.sergiolima@gmail.com)gabriel cabral de almeida
  * @version 1.0.0
  */
 class ControlRelatorio extends ControlGeral
 {
 
     /**
-     * Método utilizado para validar os dados dos pets cadastrados e invocar o método Garar Relatorio no model
+     * Método utilizado para validar os dados dos pets cadastrados e invocar o método onsultarDados no model
      * @access public 
      * @param Array dados do Relatorio
      * @return Array dados do Relatorio
@@ -35,12 +35,15 @@ class ControlRelatorio extends ControlGeral
         $arrdados['saida'] = $this->dataAmericano($arrdados['saida']);
 
         $dados = $objRel->consultarDados($arrdados);
+        #gerar o relatório em PDF
         $this->relatorio($dados, $arrdados);
     }
 
     /**
+     * gera o ralatótio em PDF
      * @param $arrdados
      * @param $dados
+     * return PDF
      */
     function relatorio($arrdados, $dados)
     {

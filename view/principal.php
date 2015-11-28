@@ -14,7 +14,7 @@ if (isset($_POST["consultar"])) {
     // passa o cpf e nome para consultar
     $entrada = $ce->consultar($_POST);
 } else {
-    // mostrar todos os funcionarios
+    // mostrar todos ass entradas de veiculos
     $entrada = $ce->consultar();
 }
 $vagas = $ce->consultarVagas(1);
@@ -77,8 +77,8 @@ $vagas = $ce->consultarVagas(1);
                             <!-- Button -->
                             <div class="form-group">
                                 <div class="col-md-2">
-                                    <button class="btn btn-success btn-lg btn-block" id="btnentrada" name="btnentrada"
-                                            style=" margin-left: 31px;margin-bottom: 10px;"><span
+                                    <button class="btn btn-success btn-lg " id="btnentrada" name="btnentrada"
+                                           ><span
                                             class="fa fa-car fa-2x"></span> Registrar Entrada
                                     </button>
                                 </div>

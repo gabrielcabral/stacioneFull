@@ -11,7 +11,7 @@ $usuario = mysql_real_escape_string($_POST['login']);
 $senha = mysql_real_escape_string($_POST['senha']);
 
 // Validação do usuário/senha digitados
-$sql = "SELECT id_funcionario, nm_funcionario , cpf_funcionario , senha ,id_perfil FROM tb_funcionario WHERE (login = '" . $usuario . "') AND (senha = '" . substr(sha1($senha), 0, 40) . "') and ativo = 1 LIMIT 1";
+$sql = "SELECT id_funcionario, nm_funcionario , cpf_funcionario , senha ,id_perfil FROM tb_funcionario WHERE (login = '" . $usuario . "') AND (senha = '" . substr(md5 ($senha), 0, 40) . "') and ativo = 1 LIMIT 1";
 $query = mysql_query($sql);
 
 if (@mysql_num_rows($query) != 1) {

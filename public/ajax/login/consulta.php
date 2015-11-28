@@ -12,7 +12,7 @@ $senha = $_POST['senha'];
 
 $pdo = new ModelConexao();
 $bd = $pdo->conectar();
-$dados = $bd->prepare ("SELECT id_funcionario, nm_funcionario , cpf_funcionario , senha ,id_perfil FROM tb_funcionario WHERE login =  '".$usuario."'  AND senha = '" . substr(sha1($senha), 0, 40) . "' and ativo = 1 LIMIT 1");
+$dados = $bd->prepare ("SELECT id_funcionario, nm_funcionario , cpf_funcionario , senha ,id_perfil FROM tb_funcionario WHERE login =  '".$usuario."'  AND senha = '" . substr(md5 ($senha), 0, 40) . "' and ativo = 1 LIMIT 1");
 
 $dados->execute();
 

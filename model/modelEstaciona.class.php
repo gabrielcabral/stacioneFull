@@ -5,7 +5,10 @@ require_once '../model/modelConexao.class.php';
 
 
 /**
- * Class ModelEstaciona
+ * Criado em 01/08/2015
+ * Classe de  Estaciona
+ * @author gabriel cabral de almeida
+ * @version 1.0.0
  */
 class ModelEstaciona extends ModelConexao
 {
@@ -13,30 +16,32 @@ class ModelEstaciona extends ModelConexao
     /**
      * Atributos da classe
      */
-
+    /**
+     * @var  $id_entrada_saida
+     */
     private $id_entrada_saida;
     /**
-     * @var
+     * @var $entrada
      */
     private $entrada;
     /**
-     * @var
+     * @var $saida
      */
     private $saida;
     /**
-     * @var
+     * @var $id_funcionario
      */
     private $id_funcionario;
     /**
-     * @var
+     * @var  $id_veiculo
      */
     private $id_veiculo;
     /**
-     * @var
+     * @var $id_imagem
      */
     private $id_imagem;
     /**
-     * @var
+     * @var $placa
      */
     private $placa;
 
@@ -154,14 +159,6 @@ class ModelEstaciona extends ModelConexao
 
 
     /**
-     * método mágico para não permitir clonar a classe
-     */
-    public function __clone() 
-    {
-        ;
-    }
-
-    /**
      * Método utilizado para consultar a entrada cadastrados
      * @access public 
      * @param Int
@@ -230,11 +227,10 @@ class ModelEstaciona extends ModelConexao
     }
 
     /**
-     * Método utilizado para consultar os funcionarios cadastrados
+     * Método utilizado para consultar os pagementos cadastrados
      * @access public
-     * @param Int    $id   id do funcionario
-     * @param String $nome nome do funcionario
-     * @return Array dados do funcionario
+     * @param Array $arrEntrada
+     * @return Array dados do pagamentos
      */
     public function consultarParaPagamento($arrEntrada) 
     {
@@ -252,26 +248,19 @@ class ModelEstaciona extends ModelConexao
                 INNER JOIN tb_fabricante f ON f.ID_fabricante = v.id_fabricante
                 WHERE TRUE
                    ";
-
-
         // verificar se foi passado algum valor de $id_
         if ($this->getIdEntradaSaida() != null) {
             $sql.= " and es.ID_ENTRADA_SAIDA  =:id";
         }
-
-
         // executa consulta e controi um array com o resultado da consulta
         try {
             $bd = $this->conectar();
             $query = $bd->prepare($sql);
-
             // verificar se foi passado algum valor de $id_funcionario
             if ($this->getIdEntradaSaida() != null) {
                 $query->bindValue(':id', $this->getIdEntradaSaida(), PDO::PARAM_INT);
             }
-
             $query->execute();
-
             $this->resultado = $query->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             $e->getMessage();
@@ -280,21 +269,13 @@ class ModelEstaciona extends ModelConexao
         }
         return $this->resultado;
     }
-
-
     /**
-     * Método utilizado para consultar os funcionarios cadastrados
+     * Método utilizado para consultar os veiculos cadastrados
      * @access public
-     * @param Int    $id   id do funcionario
-     * @param String $nome nome do funcionario
-     * @return Array dados do funcionario
+     * @return Array dados do veiculos
      */
     public function consultarVeiculo() 
     {
-
-        // setar os valores
-
-
         // montar a consultar (whre 1 serve para selecionar todos os registros)
         $sql = "SELECT
                  DISTINCT( veiculo ),id_veiculo
@@ -315,11 +296,9 @@ class ModelEstaciona extends ModelConexao
         return $this->resultado;
     }
     /**
-     * Método utilizado para consultar os funcionarios cadastrados
+     * Método utilizado para consultar os vagas cadastrados
      * @access public
-     * @param Int    $id   id do funcionario
-     * @param String $nome nome do funcionario
-     * @return Array dados do funcionario
+     * @return Array dados do vagas
      */
     public function consultarVagas() 
     {
@@ -343,11 +322,9 @@ class ModelEstaciona extends ModelConexao
         return $this->resultado;
     }
     /**
-     * Método utilizado para consultar os funcionarios cadastrados
+     * Método utilizado para consultar os preco cadastrados
      * @access public
-     * @param Int    $id   id do funcionario
-     * @param String $nome nome do funcionario
-     * @return Array dados do funcionario
+     * @return Array dados do preco
      */
     public function consultarPreco() 
     {
@@ -368,12 +345,9 @@ class ModelEstaciona extends ModelConexao
         return $this->resultado;
     }
     /**
-     * Método utilizado para inserir um funcionario
+     * Método utilizado para inserir um entrada de veiculos
      * @access public 
-     * @param String $nome         nome do funcionario
-     * @param String $cpf          CPF do funcionario
-     * @param String $dtNascimento data de nascimento do funcionario
-     * @param String $telefone     telefone do funcionario
+     * @param Array $arrEntrada
      * @return Boolean retorna TRUE se os dados forem salvos com sucesso
      */
     function inserirEntrada($arrEntrada) 
@@ -418,53 +392,13 @@ class ModelEstaciona extends ModelConexao
         }
     }
 
+
+
     /**
-     * Método utilizado para alterar um funcionario
-     * @access public 
-     * @param Int $id id do funcionario
-     * @param String $nome nome do funcionario
-     * @param String $cpf CPF do funcionario
-     * @param String $dtNascimento data de nascimento do funcionario
-     * @param String $telefone telefone do funcionario
+     * Método utilizado para aletrar vagas
+     * @access public
+     * @param Array $arrVaga
      * @return Boolean retorna TRUE se os dados forem salvos com sucesso
-     */
-
-
-    /**
-     * Método utilizado para excluir um funcionario cadastrado
-     * @access public 
-     * @param Int $id id do funcionario
-     * @return Boolean retorna TRUE se os dados for excluído sucesso
-     */
-    public function excluirfuncionario($id_funcionario) 
-    {
-
-        // setar os dados
-        $this->setIdFuncionario($id_funcionario);
-
-        // montar a consulta
-        $sql = "UPDATE tb_funcionario
-                SET
-                   ATIVO = 0
-                WHERE
-                    ID_FUNCIONARIO = :id_funcionario";
-
-        // realizar a blidagem dos dados
-        try {
-            $bd = $this->conectar();
-            $query = $bd->prepare($sql);
-            $query->bindValue(':id_funcionario', $this->getIdFuncionario(), PDO::PARAM_INT);
-            $query->execute();
-            return true;
-        } catch (PDOException $e) {
-            $e->getMessage();
-            return false;
-        }
-    }
-
-    /**
-     * @param $arrVaga
-     * @return bool
      */
     public function alteraVaga($arrVaga)
     {
@@ -494,19 +428,21 @@ class ModelEstaciona extends ModelConexao
 
 
     /**
-     * @param $arrVaga
-     * @return bool
+     * Método utilizado para aletrar preco
+     * @access public
+     * @param Array $arrPreco
+     * @return Boolean retorna TRUE se os dados forem salvos com sucesso
      */
-    public function alterarPreco($arrVaga)
+    public function alterarPreco($arrPreco)
     {
 
 
         // montar a consulta
         $sql = "UPDATE tb_preco
                     SET
-                    PRECO_MINUTO = ".$arrVaga['preco']."
+                    PRECO_MINUTO = ".$arrPreco['preco']."
                     WHERE
-                    ID_PRECO = ".$arrVaga['id_preco'];
+                    ID_PRECO = ".$arrPreco['id_preco'];
 
         // realizar a blidagem dos dados
         try {
@@ -521,8 +457,10 @@ class ModelEstaciona extends ModelConexao
     }
 
     /**
-     * @param $id
-     * @return bool
+     * Método utilizado para inserir um saida de veiculos
+     * @access public
+     * @param int $id
+     * @return Boolean retorna TRUE se os dados forem salvos com sucesso
      */
     public function saida($id)
     {
@@ -552,8 +490,10 @@ class ModelEstaciona extends ModelConexao
 
 
     /**
-     * @param $arrPagamento
-     * @return bool
+     * Método utilizado para inserir um pagamentos
+     * @access public
+     * @param Array $arrEntrada
+     * @return Boolean retorna TRUE se os dados forem salvos com sucesso
      */
     public function inserirPagamento($arrPagamento)
     {

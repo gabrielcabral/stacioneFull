@@ -13,7 +13,7 @@ header('Content-Type: text/html; charset=UTF-8');
 
 /**
  * Criado em 01/01/2015
- * Classe de controle do funcionario
+ * Classe de controle do Veiculo
  * @author Sérgio Lima (professor.sergiolima@gmail.com)
  * @version 1.0.0
  */
@@ -23,11 +23,11 @@ class ControlVeiculo extends ControlGeral
 
 
     /**
-     * Método utilizado para validar os dados dos funcionarios cadastrados e invocar o método consultarFuncionario no model
+     * Método utilizado para validar os dados dos Veiculos cadastrados e invocar o método consultarVeiculo no model
      * @access public 
-     * @param Int    $id   id do funcionario
-     * @param String $nome nome do funcionario
-     * @return Array dados do funcionario
+     * @param Int    $id   id do Veiculo
+     * @param String $nome nome do Veiculo
+     * @return Array dados do Veiculo
      */
     function consultar($arrVeiculo = null) 
     {
@@ -37,11 +37,11 @@ class ControlVeiculo extends ControlGeral
     }
 
     /**
-     * Método utilizado para validar os dados dos funcionarios cadastrados e invocar o método consultarFuncionario no model
+     * Método utilizado para validar os dados dos Veiculos cadastrados e invocar o método consultarVeiculo no model
      * @access public
-     * @param Int    $id   id do funcionario
-     * @param String $nome nome do funcionario
-     * @return Array dados do funcionario
+     * @param Int    $id   id do Veiculo
+     * @param String $nome nome do Veiculo
+     * @return Array dados do Veiculo
      */
     function consultarVeiculo($int) 
     {
@@ -51,11 +51,11 @@ class ControlVeiculo extends ControlGeral
     }
 
     /**
-     * Método utilizado para validar os dados dos funcionarios cadastrados e invocar o método consultarFuncionario no model
+     * Método utilizado para validar os dados dos Veiculos cadastrados e invocar o método consultarVeiculo no model
      * @access public
-     * @param Int    $id   id do funcionario
-     * @param String $nome nome do funcionario
-     * @return Array dados do funcionario
+     * @param Int    $id   id do Veiculo
+     * @param String $nome nome do Veiculo
+     * @return Array dados do Veiculo
      */
     function selectFabricante() 
     {
@@ -65,110 +65,85 @@ class ControlVeiculo extends ControlGeral
     }
 
     /**
-     * Método utilizado validar os dados dos funcionarios cadastrados e invocar o método inserirFuncionario no model
+     * Método utilizado validar os dados dos Veiculos cadastrados e invocar o método inserirVeiculo no model
      * @access public 
-     * @param String $nome         nome do funcionario
-     * @param String $cpf          CPF do funcionario
-     * @param String $dtNascimento data de nascimento do funcionario
-     * @param String $telefone     telefone do funcionario
+     * @param String $nome         nome do Veiculo
+     * @param String $cpf          CPF do Veiculo
+     * @param String $dtNascimento data de nascimento do Veiculo
+     * @param String $telefone     telefone do Veiculo
      * @return Boolean retorna TRUE se os dados forem salvos com sucesso
      */
-    function inserir($dadosFuncionario) 
+    function inserir($dadosVeiculo) 
     {
 
         // invocar métódo  e passar parâmetros
-        $objFuncionario = new ModelFuncionario();
+        $objVeiculo = new ModelVeiculo();
         $objCidade = new ModelCidade();
 
 
-         $objCidade->inserirCidade($dadosFuncionario);
+         $objCidade->inserirCidade($dadosVeiculo);
 
         $id_cidade =  $objCidade->ultumoRegistro();
         $id_cidade = $id_cidade['id_cidade'];
-        $nome = $dadosFuncionario['nome'];
-        $cpf= $dadosFuncionario['cpf'];
-        $dtNascimento = $dadosFuncionario['dtNascimento'];
-        $telefone = $dadosFuncionario['telefone'];
-        $senha = sha1($dadosFuncionario['senha']);
+        $nome = $dadosVeiculo['nome'];
+        $cpf= $dadosVeiculo['cpf'];
+        $dtNascimento = $dadosVeiculo['dtNascimento'];
+        $telefone = $dadosVeiculo['telefone'];
+        $senha = md5 ($dadosVeiculo['senha']);
 
-        $tpPerfil= $dadosFuncionario['tpPerfil'];
+        $tpPerfil= $dadosVeiculo['tpPerfil'];
         // tratar a data de nascimento
         $dtNascimento = $this->dataAmericano(str_replace("/", "-", $dtNascimento));
 
 
         // se for válido invocar o método de iserir
-        if ($objFuncionario->inserirFuncionario($nome, $cpf, $dtNascimento, $telefone, $senha, $tpPerfil, $id_cidade) == true) {
+        if ($objVeiculo->inserirVeiculo($nome, $cpf, $dtNascimento, $telefone, $senha, $tpPerfil, $id_cidade) == true) {
             // se for inserido com sucesso mostrar a mensagem
             $_SESSION['msg'] = "Inserido com sucesso!";
             // redirecionar
-            header("location: ../view/modulo.php?modulo=funcionario&menu=consultar");
+            header("location: ../view/modulo.php?modulo=Veiculo&menu=consultar");
         } else {
             $_SESSION['msg'] = "Erro ao inserir!";
             // redirecionar
-            header("location: ../view/modulo.php?modulo=funcionario&menu=consultar");
+            header("location: ../view/modulo.php?modulo=Veiculo&menu=consultar");
         }
     }
-    //
-    //    /**
-    //     * Método utilizado validar os dados dos funcionarios e invocar o método alterarFuncionario no model
-    //     * @access public
-    //     * @param Int $id id do funcionario
-    //     * @param String $nome nome do funcionario
-    //     * @param String $cpf CPF do funcionario
-    //     * @param String $dtNascimento data de nascimento do funcionario
-    //     * @param String $telefone telefone do funcionario
-    //     * @return Boolean retorna TRUE se os dados forem salvos com sucesso
-    //     */
-    //    function alterar($dadosFuncionario) {
-    //
-    //        #invocar métódo  e passar parâmetros
-    //        $objFuncionario = new ModelFuncionario();
-    //        $objCidade = new ModelCidade();
-    //
-    //        $dadosFuncionario['dtNascimento'] = $this->dataAmericano(str_replace("/","-",$dadosFuncionario['dtNascimento'] ));
-    //        if ($objFuncionario->alterarFuncionario($dadosFuncionario) == true) {
-    //            #se for alterado com sucesso mostrar a mensagem
-    //            $_SESSION['msg'] = "Alterado com sucesso!";
-    //            #redirecionar
-    //            header("location: ../view/modulo.php?modulo=funcionario&menu=consultar");
-    //        } else {
-    //            $_SESSION['msg'] = "Erro ao alterar!";
-    //            #redirecionar
-    //            header("location: ../view/modulo.php?modulo=funcionario&menu=consultar");
-    //        }
-    //    }
-    //
-    //    function alterarSenha($dadosSenha) {
-    //
-    //        #invocar métódo  e passar parâmetros
-    //        $objFuncionario = new ModelFuncionario();
-    //
-    //
-    //        $id_funcionario = $dadosSenha['id_funcionario'];
-    //        $senhaAntiga = sha1($dadosSenha['senhaAntiga']);
-    //        $senha = sha1($dadosSenha['senha']);
-    //        $validaSenha = $objFuncionario->verificaSenha($senhaAntiga,$id_funcionario);
-    //        if($validaSenha['existe']== 0){
-    //            $_SESSION['msg'] = "Senha Antiga Incorreta!";
-    //            return false;
-    //        }
-    //
-    //        if ($objFuncionario->alterarSenha($senha,$id_funcionario) == true) {
-    //            #se for alterado com sucesso mostrar a mensagem
-    //            $_SESSION['msg'] = "Alterado com sucesso!";
-    //            #redirecionar
-    //            header("location: ../view/modulo.php?modulo=principal");
-    //        } else {
-    //            $_SESSION['msg'] = "Erro ao alterar!";
-    //            #redirecionar
-    //            header("location: ../view/modulo.php?modulo=principal");
-    //        }
-    //    }
+
+        /**
+         * Método utilizado validar os dados dos Veiculos e invocar o método alterarVeiculo no model
+         * @access public
+         * @param Int $id id do Veiculo
+         * @param String $nome nome do Veiculo
+         * @param String $cpf CPF do Veiculo
+         * @param String $dtNascimento data de nascimento do Veiculo
+         * @param String $telefone telefone do Veiculo
+         * @return Boolean retorna TRUE se os dados forem salvos com sucesso
+         */
+        function alterar($dadosVeiculo) {
+
+            #invocar métódo  e passar parâmetros
+            $objVeiculo = new ModelVeiculo();
+
+
+            $dadosVeiculo['dtNascimento'] = $this->dataAmericano(str_replace("/","-",$dadosVeiculo['dtNascimento'] ));
+            if ($objVeiculo->alterarVeiculo($dadosVeiculo) == true) {
+                #se for alterado com sucesso mostrar a mensagem
+                $_SESSION['msg'] = "Alterado com sucesso!";
+                #redirecionar
+                header("location: ../view/modulo.php?modulo=Veiculo&menu=consultar");
+            } else {
+                $_SESSION['msg'] = "Erro ao alterar!";
+                #redirecionar
+                header("location: ../view/modulo.php?modulo=Veiculo&menu=consultar");
+            }
+        }
+
+
 
     /**
-     * Método utilizado para validar os dados dos funcionarios e invocar o método excluirFuncionario no model
+     * Método utilizado para validar os dados dos Veiculos e invocar o método excluirVeiculo no model
      * @access public
-     * @param Int $id id do funcionario
+     * @param Int $id id do VEICULO
      * @return Boolean retorna TRUE se os dados for excluído sucesso
      */
     function delete($id) 

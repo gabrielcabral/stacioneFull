@@ -20,7 +20,7 @@ if (isset($_POST["consultar"])) {
     #passa o cpf e nome para consultar
   $veiculos = $cv->consultar($_POST);
 } else {
-    #mostrar todos os funcionarios
+    #mostrar todos os Veiculo
    // $veiculos = $cv->consultar();
 }
 
@@ -33,8 +33,6 @@ if (isset($_POST["consultar"])) {
     <link rel="icon" href="../bootstrap/img/logo.JPG" type="image/x-icon" />
     <link rel="shortcut icon" href="../bootstrap/img/logo.JPG" type="image/x-icon" />
     <title>STACIONE</title>
-
-    <!-- BOOTSTRAP STYLES-->
     <!-- BOOTSTRAP STYLES-->
     <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" />
     <script src="../bootstrap/js/jquery-2.1.4.js"></script>
@@ -44,37 +42,26 @@ if (isset($_POST["consultar"])) {
     <link href="../bootstrap/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
     <!-- CUSTOM STYLES-->
     <link href="../bootstrap/css/custom.css" rel="stylesheet" />
-
     <script src="../bootstrap/js/jquery.maskedinput.js"></script>
-
     <script src="../bootstrap/js/bootstrap-tooltip.js"></script>
     <script src="../bootstrap/js/bootstrap-confirmation.js"></script>
     <script src="../bootstrap/js/bootstrap-datepicker.js" type="text/javascript"></script>
     <script src="../bootstrap/js/bootstrap-datepicker.pt-BR.min.js" type="text/javascript"></script>
-
     <script src="../bootstrap/js/bootstrap.min.js"></script>
-
-
-    <script type="text/javascript" src="../public/js/veiculo.js">
-
-    </script>
-
+    <script type="text/javascript" src="../public/js/veiculo.js"></script>
 </head>
 <body>
 <div id="wrapper">
     <?php
+    //insere do topo do sistema
     $cv->topo();
+    // chama para o menu lateral
     $cv->menu();
-
     ?>
-
-
     <div id="page-wrapper">
         <div id="page-inner">
-
             <h2>Veículo</h2>
             <?php
-
             if($_SESSION['tipoMsg'] ==0){
                 $cv->alertaError($_SESSION['msg']);
             }elseif($_SESSION['tipoMsg'] ==1){
@@ -82,25 +69,17 @@ if (isset($_POST["consultar"])) {
             }elseif($_SESSION['tipoMsg'] ==2){
                 $cv->alertaSuccess($_SESSION['msg']);
             }
-
             ?>
-           <!-- <div class="row">
+            <div class="row">
                 <div class="col-lg-12" style="text-align: right">
                     <button class="btn btn-success" id="btnNovoFuncionario"><span
                             class="glyphicon glyphicon-plus"></span> Novo Veículo
                     </button>
                 </div>
-
-            </div>-->
-            <!-- /.row -->
-
-
+            </div>
             <fieldset>
-
                 <form method="post" class="form-horizontal" id="formVeiculos">
-
-
-                    <!-- Select Basic -->
+                    <!-- Select tipo de veiculo -->
                     <div class="form-group">
                         <label class="col-md-2 control-label" for="veiculo">Tipo de Veiculo:</label>
                         <div class="col-md-4">
@@ -112,45 +91,31 @@ if (isset($_POST["consultar"])) {
                             </select>
                         </div>
                     </div>
-
-
-
-                    <!-- Text input-->
+                    <!-- Select fabricante -->
                     <div class="form-group">
                         <label class="col-md-2 control-label" for="nome">Fabricante:</label>
-
                         <div class="col-md-4">
-                            <select id="nome_fabricante" name="nome_fabricante"  class="form-control input-md">
-
-
-                            </select>
-
+                            <select id="nome_fabricante" name="nome_fabricante"  class="form-control input-md"></select>
                         </div>
                     </div>
-
-                    <!-- Text input-->
+                    <!-- Select modelo do veiculo -->
                     <div class="form-group">
                         <label class="col-md-2 control-label" for="nome">Modelo:</label>
-
                         <div class="col-md-4">
-                            <select id="modelo" name="modelo" class="form-control input-md">
-
-                            </select>
-
+                            <select id="modelo" name="modelo" class="form-control input-md"></select>
                         </div>
                     </div>
-
+                    <!-- botões -->
                     <div class="form-group">
                         <label class="col-md-2 control-label" for="nome"></label>
-
-                        <div class="col-md-4" style="text-align: right">
+                        < class="col-md-4" style="text-align: right">
                             <button type="reset" class="btn btn-danger" name="consultar">Limpar</button>
-                            <button class="btn btn-primary" id="consultar" name="consultar">Consultar</button>
+                            div             <button class="btn btn-primary" id="consultar" name="consultar">Consultar</button>
                         </div>
                     </div>
-
                 </form>
             </fieldset>
+        <!--tabela de consulta -->
             <div class="jumbotron" id="divVeiculos" >
                 <div class="container">
                     <div class="row">
@@ -161,27 +126,25 @@ if (isset($_POST["consultar"])) {
 
                                     <th>Fabricante</th>
                                     <th>Veiculo</th>
-
-                                   <!-- <th>Alterar</th>-->
+                                   <th>Alterar</th>
                                     <th>Excluir</th>
                                     </thead>
                                     <tbody>
                                     <?php
                                     if (count($veiculos) > 0) {
-                                        #foreach para listar os dados do funcionario
+                                        #foreach para listar os dados do veiculo
                                         foreach ($veiculos as $item) {
                                          ?>
                                             <tr id="codigo_<?= $item['id_veiculo']?>">
                                                 <td><?=$item['nome_fabricante'];?></td>
                                                 <td><?= $item['nome_veiculo'] ?></td>
-
-                                                <!--                                        <td>
+                                                <td>
                                                     <p data-placement='top' data-toggle='tooltip' title='Alterar'>
                                                        <button class='btn btn-warning btnAletrar ' data-title='Alterar'
-                                                                  id='<?/*= $item['id_veiculo'] */?>'>
+                                                                  id='<?= $item['id_veiculo'] ?>'>
                                                             <span class='glyphicon glyphicon-pencil'></span></button>
                                                     </p>
-                                                </td>-->
+                                                </td>
                                                 <td>
                                                     <p data-placement='top' data-toggle='tooltip' title='Excluir'>
                                                         <button class='btn btn-danger'
@@ -203,7 +166,6 @@ if (isset($_POST["consultar"])) {
                     </div>
                 </div>
             </div>
-
             <!-- /. ROW  -->
         </div>
         <!-- /. PAGE INNER  -->
@@ -218,10 +180,7 @@ if (isset($_POST["consultar"])) {
 <script src="../bootstrap/js/bootstrap.min.js"></script>
 <!-- METISMENU SCRIPTS -->
 <script src="../bootstrap/js/jquery.metisMenu.js"></script>
-
 <!-- CUSTOM SCRIPTS -->
 <script src="../bootstrap/js/custom.js"></script>
-
-
 </body>
 </html>

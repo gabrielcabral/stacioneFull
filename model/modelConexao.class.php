@@ -4,9 +4,9 @@
 error_reporting(~E_ALL & ~E_NOTICE & ~E_WARNING);
 
 /**
- * Criado em 01/01/2015
+ * Criado em 01/08/2015
  * Classe de conexão com PDO/MySQL
- * @author Sérgio Lima (professor.sergiolima@gmail.com)
+ * @author gabriel cabral de almeida
  * @version 1.0.0
  */
 class ModelConexao
@@ -15,21 +15,24 @@ class ModelConexao
     /**
      * Atributos da classe
      */
+    /**
+     * @var $host
+     */
     private $host;
     /**
-     * @var
+     * @var $user
      */
     private $user;
     /**
-     * @var
+     * @var $senha
      */
     private $senha;
     /**
-     * @var
+     * @var $dbase
      */
     private $dbase;
     /**
-     * @var
+     * @var $link
      */
     private $link;
 

@@ -4,9 +4,9 @@
 require_once '../model/modelConexao.class.php';
 
 /**
- * Criado em 01/01/2015
- * Classe de CRUD com PDO para
- * @author Sérgio Lima (professor.sergiolima@gmail.com)
+ * Criado em 01/08/2015
+ * Classe de conexão com PDO/MySQL
+ * @author gabriel cabral de almeida
  * @version 1.0.0
  */
 class ModelRelatorio extends ModelConexao
@@ -162,10 +162,10 @@ class ModelRelatorio extends ModelConexao
 
 
     /**
-     * Método utilizado para consultar a entrada cadastrados
+     * Método utilizado para consultar pagamnetos  cadastrados
      * @access public 
-     * @param array
-     * @return Array
+     * @param array $arrEntrada
+     * @return Array de pagamentos
      */
     public function consultarDados($arrEntrada)
     {

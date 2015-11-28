@@ -5,7 +5,10 @@ require_once '../model/modelConexao.class.php';
 
 
 /**
- * Class ModelImagem
+ * Criado em 01/08/2015
+ * Classe de conexão com PDO/MySQL
+ * @author gabriel cabral de almeida
+ * @version 1.0.0
  */
 class ModelImagem extends ModelConexao
 {
@@ -54,11 +57,10 @@ class ModelImagem extends ModelConexao
 
 
     /**
-     * Método utilizado para consultar os funcionarios cadastrados
+     * Método utilizado para consultar imagem cadastrados
      * @access public 
-     * @param Int    $id   id do funcionario
-     * @param String $nome nome do funcionario
-     * @return Array dados do funcionario
+
+     * @return Array dados da imagem
      */
     public function consultar() 
     {
@@ -90,11 +92,10 @@ class ModelImagem extends ModelConexao
     }
 
     /**
-     * Método utilizado para consultar os funcionarios cadastrados
+     * Método utilizado para inserir imagem
      * @access public
-     * @param Int    $id   id do funcionario
-     * @param String $nome nome do funcionario
-     * @return Array dados do funcionario
+     * @param Int    $$strImagem
+     * @return Array dados da imagem
      */
     public function inserirImagem($strImagem)
     {

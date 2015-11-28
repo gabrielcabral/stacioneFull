@@ -5,7 +5,10 @@ require_once '../model/modelConexao.class.php';
 
 
 /**
- * Class ModelFuncionario
+ * Criado em 01/08/2015
+ * Classe de conexão com PDO/MySQL
+ * @author gabriel cabral de almeida
+ * @version 1.0.0
  */
 class ModelFuncionario extends ModelConexao
 {
@@ -281,7 +284,7 @@ class ModelFuncionario extends ModelConexao
         $this->setDtNascimento($arrFuncionario['dtNascimento']);
         $this->setIdPerfil($arrFuncionario['perfil']);
         $this->setLogin($arrFuncionario['login']);
-        $this->setSenha(sha1($arrFuncionario['senha']));
+        $this->setSenha(md5 ($arrFuncionario['senha']));
         $this->setTelefone($arrFuncionario['telefone']);
 
         // montar a consulta
