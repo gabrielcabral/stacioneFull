@@ -78,45 +78,26 @@ class ControlVeiculo extends ControlGeral
 
         // invocar métódo  e passar parâmetros
         $objVeiculo = new ModelVeiculo();
-        $objCidade = new ModelCidade();
-
-
-         $objCidade->inserirCidade($dadosVeiculo);
-
-        $id_cidade =  $objCidade->ultumoRegistro();
-        $id_cidade = $id_cidade['id_cidade'];
-        $nome = $dadosVeiculo['nome'];
-        $cpf= $dadosVeiculo['cpf'];
-        $dtNascimento = $dadosVeiculo['dtNascimento'];
-        $telefone = $dadosVeiculo['telefone'];
-        $senha = md5 ($dadosVeiculo['senha']);
-
-        $tpPerfil= $dadosVeiculo['tpPerfil'];
-        // tratar a data de nascimento
-        $dtNascimento = $this->dataAmericano(str_replace("/", "-", $dtNascimento));
-
 
         // se for válido invocar o método de iserir
-        if ($objVeiculo->inserirVeiculo($nome, $cpf, $dtNascimento, $telefone, $senha, $tpPerfil, $id_cidade) == true) {
+        if ($objVeiculo->inserirVeiculo($dadosVeiculo) == true) {
             // se for inserido com sucesso mostrar a mensagem
             $_SESSION['msg'] = "Inserido com sucesso!";
+            $_SESSION['tipoMsg'] = 2;
             // redirecionar
-            header("location: ../view/modulo.php?modulo=Veiculo&menu=consultar");
+            header("location: ../view/modulo.php?modulo=veiculo&menu=consultar");
         } else {
             $_SESSION['msg'] = "Erro ao inserir!";
+            $_SESSION['tipoMsg'] = 0;
             // redirecionar
-            header("location: ../view/modulo.php?modulo=Veiculo&menu=consultar");
+            header("location: ../view/modulo.php?modulo=veiculo&menu=inserir");
         }
     }
 
         /**
          * Método utilizado validar os dados dos Veiculos e invocar o método alterarVeiculo no model
          * @access public
-         * @param Int $id id do Veiculo
-         * @param String $nome nome do Veiculo
-         * @param String $cpf CPF do Veiculo
-         * @param String $dtNascimento data de nascimento do Veiculo
-         * @param String $telefone telefone do Veiculo
+         * @param Array
          * @return Boolean retorna TRUE se os dados forem salvos com sucesso
          */
         function alterar($dadosVeiculo) {
@@ -125,16 +106,18 @@ class ControlVeiculo extends ControlGeral
             $objVeiculo = new ModelVeiculo();
 
 
-            $dadosVeiculo['dtNascimento'] = $this->dataAmericano(str_replace("/","-",$dadosVeiculo['dtNascimento'] ));
+
             if ($objVeiculo->alterarVeiculo($dadosVeiculo) == true) {
                 #se for alterado com sucesso mostrar a mensagem
                 $_SESSION['msg'] = "Alterado com sucesso!";
+                $_SESSION['tipoMsg'] = 2;
                 #redirecionar
-                header("location: ../view/modulo.php?modulo=Veiculo&menu=consultar");
+                header("location: ../view/modulo.php?modulo=veiculo&menu=consultar");
             } else {
                 $_SESSION['msg'] = "Erro ao alterar!";
+                $_SESSION['tipoMsg'] = 0;
                 #redirecionar
-                header("location: ../view/modulo.php?modulo=Veiculo&menu=consultar");
+                header("location: ../view/modulo.php?modulo=veiculo&menu=consultar");
             }
         }
 

@@ -24,8 +24,17 @@ jQuery(
                 $('#formVeiculos').submit();
             }
         );
+        $("#btnNovoVeiculo").click(
+            function () {
+                window.location.href = "modulo.php?modulo=veiculo&menu=inserir";
+            }
+        );
 
-
+        $(".btnAletrar").click(
+            function () {
+                window.location.href = "modulo.php?modulo=veiculo&menu=alterar&id="+this.id;
+            }
+        );
         $("#nome_fabricante").change(
             function() {
 

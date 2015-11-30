@@ -73,6 +73,7 @@ $cc = new ControlFuncionario();
                     } elseif ($_SESSION['tipoMsg'] == 2) {
                         $cc->alertaSuccess($_SESSION['msg']);
                     }
+                     if($_SESSION['UsuarioNivel'] != 1){
                     ?>
                     <!-- Text input-->
                     <div class="form-group">
@@ -176,6 +177,14 @@ $cc = new ControlFuncionario();
                 </fieldset>
             </form>
             <!-- /. PAGE INNER  -->
+            <?php } else {
+
+                $_SESSION['msg'] = "O usuário ".$_SESSION['UsuarioNome']." não tem permissao! ";
+
+                $cc->alertaError($_SESSION['msg']);
+            }
+
+            ?>
         </div>
         <!-- /. PAGE WRAPPER  -->
     </div>

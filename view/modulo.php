@@ -38,6 +38,10 @@ switch ($modulo) {
             case 'inserir':
                 include 'inserirVeiculo.php';
                 break;
+            // menu alterar
+            case 'alterar':
+                include 'alterarVeiculo.php';
+                break;
         }
         break;
     // modulo vagas
@@ -80,7 +84,7 @@ switch ($modulo) {
                 include 'efetuarPagamento.php';
                 break;
         }
-        break;
+            break;
     case 'relatorio':
         switch ($menu) {
             // menu consultar

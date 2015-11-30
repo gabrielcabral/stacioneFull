@@ -49,7 +49,9 @@ if (isset($_POST["alterar"])) {
                 $ce->alertaInfo($_SESSION['msg']);
             } elseif ($_SESSION['tipoMsg'] == 2) {
                 $ce->alertaSuccess($_SESSION['msg']);
+
             }
+            if($_SESSION['UsuarioNivel'] != 1){
             ?>
             <div class="row">
                 <fieldset>
@@ -88,8 +90,17 @@ if (isset($_POST["alterar"])) {
                     </form>
                 </fieldset>
                 <!-- /. ROW  -->
+
             </div>
             <!-- /. PAGE INNER  -->
+            <?php } else {
+
+                $_SESSION['msg'] = "O usuário ".$_SESSION['UsuarioNome']." não tem permissao! ";
+
+                $cc->alertaError($_SESSION['msg']);
+            }
+
+            ?>
         </div>
         <!-- /. PAGE WRAPPER  -->
     </div>

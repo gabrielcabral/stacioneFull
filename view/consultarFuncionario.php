@@ -25,7 +25,7 @@ if (isset($_POST["consultar"])) {
 }
 
 
-
+/*
 $local_file = 'cupon_fiscal'.date('dmyHis'); // Definimos o local para salvar o arquivo de texto
 $escreve = "Teste de impressao\nEste texto está sendo impresso por uma página em PHP!!"; // A variavel escreve será o que desejamos imprimir e escrever no arquivo de texto
 $fp = fopen('../cupom/'.$local_file.'.txt', "w"); //utilizamos o operador w+ para criar o arquivo imprimir.txt, e APAGAR tudo que já existe nele, caso ele já exista.
@@ -33,7 +33,7 @@ $salva = fwrite($fp, $escreve);
 fclose($fp);
 
 // Agora que já temos o arquivo imprime.txt, no local indicado por $local_fil, basta mandar imprimir:
-
+*/
 
 
 ?>
@@ -94,7 +94,7 @@ fclose($fp);
             }elseif($_SESSION['tipoMsg'] ==2){
                 $cc->alertaSuccess($_SESSION['msg']);
             }
-
+                if($_SESSION['UsuarioNivel'] != 1){
             ?>
             <div class="row">
                 <div class="col-lg-12" style="text-align: right">
@@ -194,7 +194,7 @@ fclose($fp);
                                         <?php }
                                     } else {
                                         echo "<tr>
-                                                    <td colspan='6' align='center' style='color: #002a80;font-weight: bold'>Nenhum Fincionário encontrado!</td></tr>";
+                                                    <td colspan='6' align='center' style='color: #002a80;font-weight: bold'>Nenhum Funcionário encontrado!</td></tr>";
                                     } ?>
                                     </tbody>
                                 </table>
@@ -203,6 +203,16 @@ fclose($fp);
                         </div>
                     </div>
                 </div>
+
+
+            <?php } else {
+
+                    $_SESSION['msg'] = "O usuário ".$_SESSION['UsuarioNome']." não tem permissao! ";
+
+                    $cc->alertaError($_SESSION['msg']);
+                }
+
+            ?>
             </div>
 
             <!-- /. ROW  -->

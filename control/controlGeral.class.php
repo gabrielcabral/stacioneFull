@@ -191,9 +191,9 @@ class ControlGeral
                     <li>
                         <a href="modulo.php?modulo=veiculo&menu=consultar">Consultar</a>
                     </li>
-                   <!-- <li>
+                    <li>
                         <a href="modulo.php?modulo=veiculo&menu=inserir">Inserir</a>
-                    </li>-->
+                    </li>
                 </ul>
             </li>
             <li>

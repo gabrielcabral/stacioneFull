@@ -69,10 +69,11 @@ if (isset($_POST["consultar"])) {
             }elseif($_SESSION['tipoMsg'] ==2){
                 $cv->alertaSuccess($_SESSION['msg']);
             }
+            if($_SESSION['UsuarioNivel'] != 1){
             ?>
             <div class="row">
                 <div class="col-lg-12" style="text-align: right">
-                    <button class="btn btn-success" id="btnNovoFuncionario"><span
+                    <button class="btn btn-success" id="btnNovoVeiculo"><span
                             class="glyphicon glyphicon-plus"></span> Novo Veículo
                     </button>
                 </div>
@@ -108,9 +109,9 @@ if (isset($_POST["consultar"])) {
                     <!-- botões -->
                     <div class="form-group">
                         <label class="col-md-2 control-label" for="nome"></label>
-                        < class="col-md-4" style="text-align: right">
+                        <div   class="col-md-4" style="text-align: right">
                             <button type="reset" class="btn btn-danger" name="consultar">Limpar</button>
-                            div             <button class="btn btn-primary" id="consultar" name="consultar">Consultar</button>
+                                     <button class="btn btn-primary" id="consultar" name="consultar">Consultar</button>
                         </div>
                     </div>
                 </form>
@@ -156,7 +157,7 @@ if (isset($_POST["consultar"])) {
                                         <?php }
                                     } else {
                                         echo "<tr>
-                                                    <td colspan='6' align='center' style='color: #002a80;font-weight: bold'>Nenhum Fincionário encontrado!</td></tr>";
+                                                    <td colspan='6' align='center' style='color: #002a80;font-weight: bold'>Nenhum Veículo encontrado!</td></tr>";
                                     } ?>
                                     </tbody>
                                 </table>
@@ -166,7 +167,14 @@ if (isset($_POST["consultar"])) {
                     </div>
                 </div>
             </div>
-            <!-- /. ROW  -->
+            <?php } else {
+
+                $_SESSION['msg'] = "O usuário ".$_SESSION['UsuarioNome']." não tem permissao! ";
+
+                $cc->alertaError($_SESSION['msg']);
+            }
+
+            ?>
         </div>
         <!-- /. PAGE INNER  -->
     </div>

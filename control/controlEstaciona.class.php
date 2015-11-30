@@ -161,13 +161,15 @@ class ControlEstaciona extends ControlGeral
         #se for válido invocar o método de iserir
         if ($objEntrada->inserirPagamento($arrPagamento) == true) {
             #se for inserido com sucesso mostrar a mensagem
-            $_SESSION['msg'] = "Inserido com sucesso!";
+            $_SESSION['msg'] = "Pagamento efetuado com sucesso!";
+            $_SESSION['tipoMsg'] = 2;
             #redirecionar
-            header("location: ../view/modulo.php?modulo=funcionario&menu=consultar");
+            header("location: ../view/modulo.php?modulo=principal");
         } else {
-            $_SESSION['msg'] = "Erro ao inserir!";
+            $_SESSION['msg'] = "Erro ao efetuar O pagamento!";
+            $_SESSION['tipoMsg'] = 0;
             #redirecionar
-            header("location: ../view/modulo.php?modulo=funcionario&menu=consultar");
+            header("location: ../view/modulo.php?modulo=pagamento&menu=efetuar&id=".$arrPagamento['ID_ENTRADA_SAIDA']);
         }
     }
 

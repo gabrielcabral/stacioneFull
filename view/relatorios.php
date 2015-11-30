@@ -2,6 +2,7 @@
 // iniciar_sessao
 session_start();
 require_once 'autoload.php';
+
 // cria o objeto de controle
 $rel = new ControlRelatorio();
 // verfica o o botão 'consultar' foi acionado
@@ -39,12 +40,13 @@ if (isset($_POST["gerar"])) {
     <?php
     $rel->topo();
     $rel->menu();
+
     ?>
     <div id="page-wrapper">
         <div id="page-inner">
             <fieldset>
                 <h2>Relatório</h2>
-
+                <?php   if($_SESSION['UsuarioNivel'] != 1){?>
                 <form method="post" class="form-horizontal">
                     <!-- Text input-->
                     <div class="form-group">
@@ -79,7 +81,15 @@ if (isset($_POST["gerar"])) {
                 </form>
             </fieldset>
             <!-- /. PAGE INNER  -->
-        </div>
+
+        <?php } else {
+
+            $_SESSION['msg'] = "O usuário ".$_SESSION['UsuarioNome']." não tem permissao! ";
+
+            $rel->alertaError($_SESSION['msg']);
+        }
+
+        ?> </div>
         <!-- /. PAGE WRAPPER  -->
     </div>
     <!-- /. WRAPPER  -->

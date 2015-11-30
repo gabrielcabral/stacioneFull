@@ -54,7 +54,7 @@ class ControlFuncionario extends ControlGeral
         // se for válido invocar o método de iserir
         if ($objFuncionario->inserirFuncionario($dadosFuncionario) == true) {
             // se for inserido com sucesso mostrar a mensagem
-            $_SESSION['msg'] = "Alterado com sucesso!";
+            $_SESSION['msg'] = "Inserido com sucesso!";
             $_SESSION['tipoMsg'] = 2;
             // redirecionar
             header("location: ../view/modulo.php?modulo=funcionario&menu=consultar");

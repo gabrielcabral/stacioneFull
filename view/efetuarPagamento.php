@@ -22,12 +22,6 @@ $to = ($segunto1 - $segunto2);
 $mins = round(($to / 60));
 $total = $mins * $preco['PRECO_MINUTO'];
 
-
-if (isset($_POST["receber"])) {
-    #passa os dados para inserir
-    var_dump($_POST);
-    $ce->efetuarPagamento($_POST);
-}
 ?>
 <html lang="pt-br">
 <head>
@@ -148,3 +142,11 @@ if (isset($_POST["receber"])) {
 <script src="../bootstrap/js/custom.js"></script>
 </body>
 </html>
+<?php
+
+if (isset($_POST["receber"])) {
+    #passa os dados para inserir
+
+    $ce->efetuarPagamento($_POST);
+}
+?>
