@@ -12,7 +12,7 @@ header('Content-Type: text/html; charset=UTF-8');
 /**
  * Criado em 01/01/2015
  * Classe de controle geral
- * @author Sérgio Lima (professor.sergiolima@gmail.com)
+ * @author Gabriel Cabral  (cabraldealmeida@gmail.com)
  * @version 1.0.0
  */
 class ControlGeral

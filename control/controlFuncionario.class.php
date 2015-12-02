@@ -14,7 +14,7 @@ header('Content-Type: text/html; charset=UTF-8');
 /**
  * Criado em 01/01/2015
  * Classe de controle do funcionario
- * @author Sérgio Lima (professor.sergiolima@gmail.com)
+ * @author Gabriel Cabral  (cabraldealmeida@gmail.com)
  * @version 1.0.0
  */
 class ControlFuncionario extends ControlGeral
@@ -67,11 +67,7 @@ class ControlFuncionario extends ControlGeral
         /**
          * Método utilizado validar os dados dos funcionarios e invocar o método alterarFuncionario no model
          * @access public
-         * @param Int $id id do funcionario
-         * @param String $nome nome do funcionario
-         * @param String $cpf CPF do funcionario
-         * @param String $dtNascimento data de nascimento do funcionario
-         * @param String $telefone telefone do funcionario
+         * @param Array dadosFuncionario
          * @return Boolean retorna TRUE se os dados forem salvos com sucesso
          */
         function alterar($dadosFuncionario) {
@@ -97,9 +93,7 @@ class ControlFuncionario extends ControlGeral
     /**
      * Método utilizado validar os dados dos funcionarios e invocar o método verificaSenha no model
      * @access public
-     * @param Int $id_funcionario id do funcionario
-     * @param String $senhaAntiga senhaantifga
-     * @param String $senha senhanova
+     * @param Array dadosSenha
      * @return Boolean retorna TRUE se os dados forem salvos com sucesso
      */
     function alterarSenha($dadosSenha) {

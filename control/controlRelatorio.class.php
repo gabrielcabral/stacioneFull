@@ -15,7 +15,7 @@ header('Content-Type: text/html; charset=UTF-8');
 /**
  * Criado em 11/10/2015
  * Classe de relatorio
- * @author Sérgio Lima (professor.sergiolima@gmail.com)gabriel cabral de almeida
+ * @author Gabriel Cabral  (cabraldealmeida@gmail.com)
  * @version 1.0.0
  */
 class ControlRelatorio extends ControlGeral
