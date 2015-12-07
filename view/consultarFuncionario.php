@@ -172,7 +172,7 @@ fclose($fp);
                                             ?>
                                             <tr id="codigo_<?= $item['ID_FUNCIONARIO'] ?>">
                                                 <td><?= $item['NM_FUNCIONARIO'] ?></td>
-                                                <td><?=$cc->mascara($item['CPF_FUNCIONARIO'],'###.###.###-##');?></td>
+                                                <td><?=$item['CPF_FUNCIONARIO'];?></td>
                                                 <td><?= $item['TELEFONE'] ?></td>
                                                 <td><?= $perfil ?></td>
                                                 <td><?= $cc->dataBrasileiro($item['DT_NASCIMENTO']) ?></td>

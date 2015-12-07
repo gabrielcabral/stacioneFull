@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e9ee879-e412-487a-adeb-bbb7c541c2ef" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/documentacao/TCCStacione_vamosPassar.docx" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/banco/dbstacione.sql" afterPath="$PROJECT_DIR$/banco/dbstacione.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/control/controlFuncionario.class.php" afterPath="$PROJECT_DIR$/control/controlFuncionario.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/control/controlGeral.class.php" afterPath="$PROJECT_DIR$/control/controlGeral.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/control/controlRelatorio.class.php" afterPath="$PROJECT_DIR$/control/controlRelatorio.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/control/controlVeiculo.class.php" afterPath="$PROJECT_DIR$/control/controlVeiculo.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/consultarFuncionario.php" afterPath="$PROJECT_DIR$/view/consultarFuncionario.php" />
     </list>
     <ignored path="stacioneFull.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,19 +41,43 @@
       <file leaf-file-name="conectar.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/conectar.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.346153">
+            <state vertical-scroll-proportion="0.0">
               <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controlEstaciona.class.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="controlEstaciona.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/control/controlEstaciona.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="3.242891">
+            <state vertical-scroll-proportion="0.0">
               <caret line="161" column="35" selection-start-line="161" selection-start-column="35" selection-end-line="161" selection-end-column="35" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="alterarFuncionario.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/view/alterarFuncionario.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="92" column="92" selection-start-line="92" selection-start-column="82" selection-end-line="92" selection-end-column="92" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="consultarFuncionario.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/view/consultarFuncionario.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.7180095">
+              <caret line="174" column="79" selection-start-line="174" selection-start-column="79" selection-end-line="174" selection-end-column="79" />
+              <folding>
+                <marker date="1449427956307" expanded="true" signature="7394:7465" placeholder="..." />
+                <marker date="1449427956307" expanded="true" signature="8922:9087" placeholder="..." />
+                <marker date="1449427956307" expanded="true" signature="9014:9046" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -85,7 +104,6 @@
         <option value="$PROJECT_DIR$/view/autoload.php" />
         <option value="$PROJECT_DIR$/view/deleteFuncionario.php" />
         <option value="$PROJECT_DIR$/view/inserirEntrada.php" />
-        <option value="$PROJECT_DIR$/view/alterarFuncionario.php" />
         <option value="$PROJECT_DIR$/public/js/preco.js" />
         <option value="$PROJECT_DIR$/model/modelGenerico.class.php" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/d6641cbe-ce1b-4b31-9677-29069edaccfc/console.sql" />
@@ -118,7 +136,6 @@
         <option value="$PROJECT_DIR$/control/controlEstaciona.class.php" />
         <option value="$PROJECT_DIR$/view/alterarVeiculo.php" />
         <option value="$PROJECT_DIR$/model/modelEstaciona.class.php" />
-        <option value="$PROJECT_DIR$/view/consultarFuncionario.php" />
         <option value="$PROJECT_DIR$/documentacao/class-ControlFuncionario.html" />
         <option value="$PROJECT_DIR$/documentacao/class-ControlGeral.html" />
         <option value="$PROJECT_DIR$/documentacao/class-ControlRelatorio.html" />
@@ -131,6 +148,8 @@
         <option value="$PROJECT_DIR$/control/controlVeiculo.class.php" />
         <option value="$PROJECT_DIR$/documentacao/source-class-ControlRelatorio.html" />
         <option value="$PROJECT_DIR$/control/controlFuncionario.class.php" />
+        <option value="$PROJECT_DIR$/view/alterarFuncionario.php" />
+        <option value="$PROJECT_DIR$/view/consultarFuncionario.php" />
       </list>
     </option>
   </component>
@@ -177,7 +196,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -206,12 +224,13 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="control" />
+              <option name="myItemId" value="view" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -245,7 +264,7 @@
       <recent name="C:\projetos\stacioneFull\control" />
     </key>
   </component>
-  <component name="RunManager" selected="PHP Built-in Web Server.servidor-Stacione">
+  <component name="RunManager" selected="PHP Web Application.stacine">
     <configuration default="false" name="modelEstaciona.class.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/model/modelEstaciona.class.php">
       <method />
     </configuration>
@@ -355,7 +374,13 @@
       <option name="project" value="LOCAL" />
       <updated>1448927459219</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="02/12/2015">
+      <created>1449071652144</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1449071652144</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView">
@@ -369,11 +394,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="PlantUML" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22334754" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23027718" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17270789" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -387,13 +412,13 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2992126" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.298441" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5777778" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32405347" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="CSS-X-Fire" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24414715" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24387528" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -451,11 +476,6 @@
           <url>file://$PROJECT_DIR$/model/modelVeiculo.class.php</url>
           <line>145</line>
           <option name="timeStamp" value="64" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/view/alterarFuncionario.php</url>
-          <line>21</line>
-          <option name="timeStamp" value="67" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/model/modelEstaciona.class.php</url>
@@ -670,14 +690,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/view/alterarFuncionario.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="47.73077">
-          <caret line="22" column="1" selection-start-line="18" selection-start-column="0" selection-end-line="22" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/view/modulo.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -737,13 +749,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="201" column="11" selection-start-line="201" selection-start-column="11" selection-end-line="201" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/view/consultarFuncionario.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="2" selection-start-line="25" selection-start-column="0" selection-end-line="35" selection-end-column="2" />
         </state>
       </provider>
     </entry>
@@ -849,7 +854,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/conectar.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.346153">
+        <state vertical-scroll-proportion="0.0">
           <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
         </state>
@@ -857,9 +862,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/control/controlEstaciona.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.242891">
+        <state vertical-scroll-proportion="0.0">
           <caret line="161" column="35" selection-start-line="161" selection-start-column="35" selection-end-line="161" selection-end-column="35" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/alterarFuncionario.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="92" column="92" selection-start-line="92" selection-start-column="82" selection-end-line="92" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/consultarFuncionario.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7180095">
+          <caret line="174" column="79" selection-start-line="174" selection-start-column="79" selection-end-line="174" selection-end-column="79" />
+          <folding>
+            <marker date="1449427956307" expanded="true" signature="7394:7465" placeholder="..." />
+            <marker date="1449427956307" expanded="true" signature="8922:9087" placeholder="..." />
+            <marker date="1449427956307" expanded="true" signature="9014:9046" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
